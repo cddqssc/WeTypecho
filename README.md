@@ -18,41 +18,13 @@ WeTypecho则能帮您快速搭建微信小程序，将Typecho博客的内容映�
 > * 支持markdown,html解析
 
 ## 扫码预览 ##
-![xcx.jpg][10]
+![xcx.jpg][1]
 ## 截图预览 ##
-**首页**  
-![wetypecho1.png][1]
-
-**文章**  
-![wetypecho2.png][2]
-
-**评论&回复&赞**  
-![wetypecho3.png][3]
-
-**转发&分享**  
-![wetypecho4.png][4]
-
-![wetypecho5.png][5]
-
-**分类&搜索**  
-![wetypecho6.png][6]
-
-![wetypecho7.png][7]
-
-**服务器监控&测速**  
-![wetypecho8.gif][8]
-
-**关于**  
-![wetypecho10.png][9]
+![wetypecho1.png][2]
+## 安装 ##
+参见[安装WeTypecho详细步骤][3]
 
 
-  [1]: https://i.loli.net/2018/08/11/5b6e4580980e9.png
-  [2]: https://i.loli.net/2018/08/11/5b6e47019c6c4.png
-  [3]: https://i.loli.net/2018/08/11/5b6e471ff2d62.png
-  [4]: https://i.loli.net/2018/08/11/5b6e472000328.png
-  [5]: https://i.loli.net/2018/08/11/5b6e486f5493d.png
-  [6]: https://i.loli.net/2018/08/11/5b6e48bedc1ab.png
-  [7]: https://i.loli.net/2018/08/11/5b6e48cf3f227.png
-  [8]: https://i.loli.net/2018/08/11/5b6e472050670.gif
-  [9]: https://i.loli.net/2018/08/11/5b6e48e14bcc4.png
-  [10]: http://res.2012.pro/2018/08/11/1533954773.jpg
+  [1]: http://res.2012.pro/2018/08/11/1533954773.jpg
+  [2]: http://res.2012.pro/2018/08/11/1533956426.png
+  [3]: https://2012.pro/index.php/20180811/cid=77.html

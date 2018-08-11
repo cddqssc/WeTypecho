@@ -1,0 +1,57 @@
+<view style="height:100%; width:100%; display: {{showstat ?  'block' : 'none'}}" >
+<view style="border-style: none none solid;border-width: 1px; border-color: rgb(196, 196, 196);" >
+    <text class="m-block index_title" style="margin: 20rpx;" >概览</text>
+</view>
+<scroll-view lower-threshold="50" scroll-y="True" style="background-color: rgba(255, 255, 255, 1); overflow-x: hidden; overflow-y: auto; " upper-threshold="50">
+    <block wx:key="id" wx:for="{{genlist}}">
+        <view class="stat_list_item" >
+            <view style="display: flex; flex-direction: column; height=16px; margin-left: 5rpx;" >
+                <text class="cut_text" style="font-weight: 600;color: #494949; font-size: 14px;" >{{item.title}}：   {{item.value}}</text>
+                <progress style=" width=75%; display:{{item.showpr ? 'flex' : 'none'}};" percent="{{item.progress}}" show-info />
+            </view>
+        </view>
+     </block>
+</scroll-view>
+<view style="margin-top:20rpx; border-style: none none solid;border-width: 1px; border-color: rgb(196, 196, 196);" >
+    <text class="m-block index_title" style="margin: 20rpx;" >网络</text>
+</view>
+<scroll-view lower-threshold="50" scroll-y="True" style="background-color: rgba(255, 255, 255, 1); overflow-x: hidden; overflow-y: auto; " upper-threshold="50">
+    <block wx:key="id" wx:for="{{netlist}}">
+        <view class="stat_list_item" >
+            <view style="display: flex; flex-direction: column; height=16px; margin-left: 5rpx;" >
+                <text class="cut_text" style="font-weight: 600;color: #494949; font-size: 14px;" >{{item.title}}：   {{item.value}}</text>
+                <progress style=" width=75%; display:{{item.showpr ? 'flex' : 'none'}};" percent="{{item.progress}}" show-info />
+            </view>
+        </view>
+     </block>
+</scroll-view>
+<view style="margin-top:20rpx; border-style: none none solid;border-width: 1px; border-color: rgb(196, 196, 196);" >
+    <text class="m-block index_title" style="margin: 20rpx;" >硬件</text>
+</view>
+<scroll-view lower-threshold="50" scroll-y="True" style="background-color: rgba(255, 255, 255, 1); overflow-x: hidden; overflow-y: auto; " upper-threshold="50">
+    <block wx:key="id" wx:for="{{serverlist}}">
+        <view class="stat_list_item" >
+            <view style="display: flex; flex-direction: column; height=16px; margin-left: 5rpx;" >
+                <text class="cut_text" style="font-weight: 600;color: #494949; font-size: 14px;" >{{item.title}}：   {{item.value}}</text>
+                <progress style=" width=75%; display:{{item.showpr ? 'flex' : 'none'}};" percent="{{item.progress}}" show-info />
+            </view>
+        </view>
+     </block>
+</scroll-view>
+<view style="margin-top:20rpx; border-style: none none solid;border-width: 1px; border-color: rgb(196, 196, 196);" >
+    <text class="m-block index_title" style="margin: 20rpx;" >网络测速</text>
+</view>
+
+<view style="margin: 0rpx 20rpx; display: block; flex-direction: column;">
+    <text style="margin-top: 10rpx; color: #c2c2c2; font-size: 12px;" >注：通过从服务器下载一个5Mb的文件实现(流量党慎测！)\n</text>
+    <text style="margin-top: 10rpx; color: #5c5c5c; font-size: 14px;" >{{speedtext}}</text>
+    <button style="width=100% margin-top: 10rpx" type="primary" bindtap="starttestspeed" class="save-btn" disabled="{{disablebtn}}">开始测速</button>
+    <progress style="width=75%; display:flex;" percent="{{downloadprogress}}" />
+</view>
+</view>
+
+<view style="height:100%; width:100%; display: {{showstat ?  'none' : 'block'}}" >
+    <view style='width:100%;padding-left:30rpx;font-size: 35rpx;margin-top:30rpx;'>该页面是查看服务器负载等情况。</view>
+    <view style='width:100%;padding-left:30rpx;font-size: 35rpx;margin-top:30rpx;'>您目前没有权限查看该页面。</view>
+    <view style='width:100%;padding-left:30rpx;font-size: 35rpx;margin-top:30rpx;'>如果您还想查看该页面请联系作者修改。</view>
+</view>

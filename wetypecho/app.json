@@ -1,0 +1,58 @@
+{
+  "debug": true, 
+  "window": {
+    "navigationBarTextStyle": "black", 
+    "navigationBarBackgroundColor": "#f5f5f5", 
+    "navigationBarTitleText": "成都第七帅", 
+    "backgroundColor": "#ffffff", 
+    "backgroundTextStyle": "dark"
+  }, 
+  "pages": [
+    "page/index/index", 
+    "page/list/list", 
+    "page/detail/detail",
+    "page/cat/cat",
+    "page/auth/auth",
+    "page/share/share",
+    "page/stat/stat",
+    "page/about/about"
+  ], 
+  "tabBar": {
+    "color": "#7F8389", 
+    "selectedColor": "#09BB07", 
+    "borderStyle": "black", 
+    "list": [
+      {
+        "selectedIconPath": "resources/homeon.png", 
+        "pagePath": "page/index/index", 
+        "iconPath": "resources/home.png", 
+        "text": "主页"
+      }, 
+      {
+        "selectedIconPath": "resources/caton.png", 
+        "pagePath": "page/cat/cat", 
+        "iconPath": "resources/cat.png", 
+        "text": "分类"
+      },
+      {
+        "selectedIconPath": "resources/staton.png", 
+        "pagePath": "page/stat/stat",
+        "iconPath": "resources/stat.png", 
+        "text": "监控"
+      },
+      {
+        "selectedIconPath": "resources/abouton.png", 
+        "pagePath": "page/about/about",
+        "iconPath": "resources/about.png", 
+        "text": "关于"
+      }
+    ], 
+    "backgroundColor": "#EFEFEF"
+  }, 
+  "networkTimeout": {
+    "connectSocket": "", 
+    "request": 5000, 
+    "downloadFile": 60000, 
+    "uploadFile": ""
+  }
+}

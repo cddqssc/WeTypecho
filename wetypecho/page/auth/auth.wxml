@@ -1,0 +1,7 @@
+<view class="container">
+    <form bindsubmit="bindSave">
+    <view style='width:100%;padding-left:30rpx;font-size: 35rpx;margin-top:30rpx;'>1、评论，点赞需要授权登录</view>
+    <view style='width:100%;padding-left:30rpx;font-size: 35rpx;margin-top:30rpx;'>2、授权会获取您的头像和昵称</view>
+    <button open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" class="save-btn">授权登录</button>
+    </form>
+</view>

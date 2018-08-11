@@ -1,0 +1,6 @@
+{
+    "enablePullDownRefresh": true,
+    "usingComponents": {
+        "canvasdrawer": "../../canvasdrawer/canvasdrawer"
+      }
+}

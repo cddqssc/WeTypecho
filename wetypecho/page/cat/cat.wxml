@@ -1,0 +1,38 @@
+<import src="../../template/foot.wxml" />
+<view class="top_search">
+    <view class="search_read_only">
+        <input class="search_content" bindtap="showsearch" bindinput="searchinput" bindblur="searchBtn" bindconfirm="searchBtn" placeholder="搜索文章"></input>
+    </view>
+</view>
+<view class="classify" style="height:{{windowHeight}}px">
+    <scroll-view class="classify_catetory" scroll-y scroll-with-animation="true" style="height:{{windowHeight}}px">
+        <view class="name {{item.active? 'active':''}}" wx:for="{{allcatslist}}" wx:key="item" bindtap="changeCat" data-mid="{{item.mid}}">
+        {{item.name}}
+        </view>
+    </scroll-view>
+    <scroll-view class="classify_detail" scroll-y scroll-with-animation="true" style="height:{{windowHeight}}px">
+        <view class="children">
+        <block wx:key="id" wx:for="{{catpostlist}}">
+        <navigator class="nav_postlist_item"  hover-class="navigator-hover" url="../detail/detail?item={{item.cid}}">
+            <view class="view_postlist_item" >
+                <view class="view_catpost" >
+                    <image class="image_cat_thumb"  mode="aspectFit" src="{{item.thumb[0].str_value}}"/>
+                    <text class="m-block image_cat_item_title cut_text" >{{item.title}}</text>
+                    <view style="margin-left: 84px; margin-top: 5px;" >
+                        <image class="listpg_first_img" src="../../resources/time.png"></image>
+                        <text class="list_text_view" >{{item.posttime}}</text>
+                        <image class="list_img_view" src="../../resources/comments.png"></image>
+                        <text class="list_text_view">{{item.commentsNum}}</text>
+                        <image class="list_img_view" src="../../resources/view.png"></image>
+                        <text class="list_text_view">{{item.views}}</text>
+                        <image class="list_img_view" src="../../resources/like.png"></image>
+                        <text class="list_text_view">{{item.likes}}</text>
+                    </view>
+                </view>
+            </view>
+        </navigator>
+        </block>
+        </view>
+        <template is="foot"></template>
+    </scroll-view>
+</view>

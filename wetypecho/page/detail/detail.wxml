@@ -1,0 +1,81 @@
+<import src="../../towxml/entry.wxml" />
+<import src="../../template/foot.wxml" />
+
+<view class="minheight detail_info" style="min-height: 110px;" >
+    <view class="minheight detail_like_btn" style="background-color:ffffff" bindtouchstart="zanstart">
+        <image style="width: 50rpx;height: 50rpx;vertical-align: middle;" mode="scaleToFill" src="{{zanimg}}"></image>
+        <text style="font-size: 12px;text-align: center; color: rgb(153, 153, 153);" >{{item.likes}}人赞</text>
+    </view>
+    <text class="m-block text_title" >{{item.title}}</text>
+    <view style="margin-left: 1px; margin-bottom: 5rpx;">
+        <image class="listpg_first_img" src="../../resources/time.png"></image>
+        <text class="list_text_view" >{{createdtime}}</text>
+        <image class="list_img_view" src="../../resources/comments.png"></image>
+        <text class="list_text_view" >{{item.commentsNum}}</text>
+        <image class="list_img_view" src="../../resources/view.png"></image>
+        <text class="list_text_view">{{item.views}}</text>
+        <image class="list_img_view" src="../../resources/like.png"></image>
+        <text class="list_text_view">{{item.likes}}</text>
+    </view>
+</view>
+<template is="entry" data="{{...content}}" bindtap="clicklink" />
+<view class="minheight view_section" >
+    <text class="m-block text_section_title" >{{item.likes}}人赞 </text>    
+    <scroll-view lower-threshold="50" scroll-x="True" style="width: 100%; overflow-x: auto; overflow-y: hidden; " upper-threshold="50">
+        <view class="post_view" >
+            <block wx:key="id" wx:for="{{likelist}}">
+            <view style="margin-right: 10px;width: 70rpx;">
+                <image class="detaillikeimg"  mode="aspectFit" src="{{item.avatarUrl}}" style="background-size: 100% 100%; background-position: 0% 0%; background-repeat: no-repeat;"/>
+            </view>
+            </block>
+        </view>
+    </scroll-view>
+
+    <text class="m-block text_section_title" style="margin-top: 30rpx" >评论 </text>
+    <block wx:key="id" wx:for="{{commentlist}}">
+        <view class="commentlistitem">
+            <navigator class="nav_userlink" hover-class="navigator-hover">
+                <view class="likeuser fm2" style="background-image:url({{item.authorImg}})"/>
+            </navigator>
+            <view class="minheight" style="flex: 1 1 0%; margin-left: 10px;" >
+                <view class="view_comment" >
+                    <navigator hover-class="navigator-hover">
+                        <text style="font-size: 12px;color: rgb(27, 91, 166);display: block;" > {{item.author}} </text>
+                    </navigator>
+                </view>
+                <text class="m-block comment_text" bindtap="replayto" data-author="{{item.author}}" data-authorid="{{item.coid}}"> {{item.text}}
+                </text>
+                <view class="replay_view" wx:key="id" wx:for="{{item.replays}}" wx:for-item="replay" wx:key="replays">
+                    <view class="replay_text" bindtap="replayto" data-author="{{replay.author}}" data-authorid="{{replay.coid}}">
+                        {{replay.author}} 回复{{replay.parentitem[0].author}}:{{replay.text}}
+                    </view>
+                </view>
+                <view class="comment_operate" >
+                    <text class="listitem_creattime" > {{item.comcreatedtime}} </text>
+                </view>
+            </view>
+        </view>
+    </block>
+<view class="comment-fixed">
+    <view class="comment-respond">                         
+        <view class="comment-box">
+            <input class="comment-input" type='text' bindinput="cminput" value="{{cmtext}}" placeholder="{{cmplaceholder}}" bindblur="cmloss" focus="{{focus}}" bindfocus="cmfocus" />
+            <button class="comment-button touch-active" formType="submit" bindtap = "sendcm">发送</button>
+            <view class="cmview" bindtap="zanstart">
+                <image src="{{zanimg}}" class="img-plus" mode="scaleToFill"></image>
+                <text class="cmicontext">{{item.likes}}人赞</text>
+            </view>
+            <view class="cmview">
+                <button class="sharebtn touch-active" id="shareBtn" open-type="share" plain='true' type="primary" hover-class="other-button-hover" style="background-image:url({{resendUrl}}); background-size: 100% 100%;">
+                </button>
+                <text class="cmicontext">转发</text>
+            </view>
+            <view class="cmview" bindtap="share">
+                <image src="../../resources/share.png" class="img-plus" mode="scaleToFill"></image>
+                <text class="cmicontext">分享</text>
+            </view>
+        </view>
+    </view>
+    </view>
+</view>
+<template is="foot"></template>

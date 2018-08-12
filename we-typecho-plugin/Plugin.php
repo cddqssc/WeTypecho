@@ -15,6 +15,7 @@ class WeTypecho_Plugin implements Typecho_Plugin_Interface
         //添加访问接口
         Helper::addRoute('jsonp', '/api/[type]', 'WeTypecho_Action');
         Helper::addAction('json', 'WeTypecho_Action');
+        Helper::removePanel(1, 'WeTypecho/users.php');
         Helper::addPanel(1, 'WeTypecho/Users.php', 'WeTypecho', '我的用户', 'administrator');
         $db = Typecho_Db::get();
         $prefix = $db->getPrefix();

@@ -36,7 +36,7 @@ Page({
       nickName: e.nickName,
       thumb: e.thumb,
       title: e.title,
-      path: e.path+"?cid="+e.cid,
+      path: e.path+"?item="+e.cid,
     })
     that.share();
   },

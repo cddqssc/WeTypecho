@@ -15,7 +15,7 @@ class WeTypecho_Plugin implements Typecho_Plugin_Interface
         //添加访问接口
         Helper::addRoute('jsonp', '/api/[type]', 'WeTypecho_Action');
         Helper::addAction('json', 'WeTypecho_Action');
-        Helper::addPanel(1, 'WeTypecho/users.php', 'WeTypecho', '我的用户', 'administrator');
+        Helper::addPanel(1, 'WeTypecho/Users.php', 'WeTypecho', '我的用户', 'administrator');
         $db = Typecho_Db::get();
         $prefix = $db->getPrefix();
         Typecho_Plugin::factory('Widget_Archive')->beforeRender = array('WeTypecho_Plugin','view_count');
@@ -72,20 +72,13 @@ class WeTypecho_Plugin implements Typecho_Plugin_Interface
                 . 'contents` ADD `likes` INT DEFAULT 0;'
             );
         }
-        if (!array_key_exists('authorImg', $db->fetchRow($db->select()->from('table.comments'))))
-        {
-            $db->query(
-                'ALTER TABLE `' . $prefix
-                . 'comments` ADD `authorImg` varchar(500) DEFAULT NULL;'
-            );
-        }
     }
 
     public static function deactivate()
     {
         Helper::removeRoute('jsonp');
         Helper::removeAction('json');
-        Helper::removePanel(1, 'WeTypecho/users.php');
+        Helper::removePanel(1, 'WeTypecho/Users.php');
     }
 
     public static function config(Typecho_Widget_Helper_Form $form)

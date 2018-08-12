@@ -73,6 +73,13 @@ class WeTypecho_Plugin implements Typecho_Plugin_Interface
                 . 'contents` ADD `likes` INT DEFAULT 0;'
             );
         }
+        if (!array_key_exists('authorImg', $db->fetchRow($db->select()->from('table.comments'))))
+        {
+            $db->query(
+                'ALTER TABLE `' . $prefix
+                . 'comments` ADD `authorImg` varchar(500) DEFAULT NULL;'
+            );
+        }
     }
 
     public static function deactivate()

@@ -15,7 +15,7 @@ class WeTypecho_Plugin implements Typecho_Plugin_Interface
         //添加访问接口
         Helper::addRoute('jsonp', '/api/[type]', 'WeTypecho_Action');
         Helper::addAction('json', 'WeTypecho_Action');
-        Helper::addPanel(1, 'WeTypecho/Users.php', 'WeTypecho', '我的用户', 'administrator');
+        Helper::addPanel(1, 'WeTypecho/users.php', 'WeTypecho', '我的用户', 'administrator');
         $db = Typecho_Db::get();
         $prefix = $db->getPrefix();
         Typecho_Plugin::factory('Widget_Archive')->beforeRender = array('WeTypecho_Plugin','view_count');
@@ -85,7 +85,7 @@ class WeTypecho_Plugin implements Typecho_Plugin_Interface
     {
         Helper::removeRoute('jsonp');
         Helper::removeAction('json');
-        Helper::removePanel(1, 'WeTypecho/Users.php');
+        Helper::removePanel(1, 'WeTypecho/users.php');
     }
 
     public static function config(Typecho_Widget_Helper_Form $form)

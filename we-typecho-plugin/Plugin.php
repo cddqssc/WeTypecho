@@ -57,21 +57,31 @@ class WeTypecho_Plugin implements Typecho_Plugin_Interface
             throw new Typecho_Plugin_Exception($e->getMessage());
         }
         //创建赞数据库
-
-        //增加点赞和阅读量
-        if (!array_key_exists('views', $db->fetchRow($db->select()->from('table.contents'))))
-        {
-            $db->query(
-                'ALTER TABLE `' . $prefix
-                . 'contents` ADD `views` INT DEFAULT 0;'
-            );
-        }
-        if (!array_key_exists('likes', $db->fetchRow($db->select()->from('table.contents'))))
-        {
-            $db->query(
-                'ALTER TABLE `' . $prefix
-                . 'contents` ADD `likes` INT DEFAULT 0;'
-            );
+        try {
+            //增加点赞和阅读量
+            if (!array_key_exists('views', $db->fetchRow($db->select()->from('table.contents'))))
+            {
+                $db->query(
+                    'ALTER TABLE `' . $prefix
+                    . 'contents` ADD `views` INT DEFAULT 0;'
+                );
+            }
+            if (!array_key_exists('likes', $db->fetchRow($db->select()->from('table.contents'))))
+            {
+                $db->query(
+                    'ALTER TABLE `' . $prefix
+                    . 'contents` ADD `likes` INT DEFAULT 0;'
+                );
+            }
+            if (!array_key_exists('authorImg', $db->fetchRow($db->select()->from('table.comments'))))
+            {
+                $db->query(
+                    'ALTER TABLE `' . $prefix
+                    . 'comments` ADD `authorImg` varchar(500) DEFAULT NULL;'
+                );
+            }
+        } catch (Exception $e) {
+            echo($e->getMessage());
         }
     }
 

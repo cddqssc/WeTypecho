@@ -408,6 +408,7 @@ class WeTypecho_Action extends Typecho_Widget implements Widget_Interface_Do {
         self::checkApisec($sec);
         
         $mid = self::GET('mid', -1);
+        $select = [];
         if($mid>=0)
         {
             $posts = $this->db->fetchAll($this->db->select('cid','mid')->from('table.relationships')->where('mid = ?', $mid));
@@ -415,7 +416,7 @@ class WeTypecho_Action extends Typecho_Widget implements Widget_Interface_Do {
                 $temp = $this->db->fetchAll($this->db->select('cid', 'title', 'created','commentsNum', 'views', 'likes')->from('table.contents')->where('cid = ?', $post['cid'])->where('status = ?', 'publish'));				
                 if(sizeof($temp)>0) {
                     $temp['0']['thumb'] = $this->db->fetchAll($this->db->select('str_value')->from('table.fields')->where('cid = ?', $post['cid']));
-                    $select[] = $temp[0];
+                    array_unshift($select,$temp[0]);
                 }
             }
             if(sizeof($posts)>0) {

@@ -1,3 +1,6 @@
+## 更新计划 ##
+[更新计划与进度][4]
+
 ## 介绍 ##
 WeTypecho--微信小程序版Typecho  
 
@@ -32,3 +35,4 @@ WeTypecho则能帮您快速搭建微信小程序，将Typecho博客的内容映�
   [1]: http://res.2012.pro/2018/08/11/1533954773.jpg
   [2]: http://res.2012.pro/2018/08/11/1533956426.png
   [3]: https://2012.pro/index.php/20180811/cid=77.html
+  [4]: https://2012.pro/index.php/20180818/cid=124.html

@@ -113,12 +113,7 @@ class WeTypecho_Action extends Typecho_Widget implements Widget_Interface_Do {
         array_unshift($cat,$cat_recent);
         $this->export($cat);
     }
-
-    private function getallcatpost()
-    {
-        
-    }
-
+    
     //首页参数 pageSize
     private function recentPost() {
         $sec = self::GET('apisec', 'null');

@@ -188,7 +188,7 @@ radio-group {
 }
 
 .index_swiper_post {
-        height: 2000rpx;
+        
 }
 
 .detaillikeswp {
@@ -214,15 +214,15 @@ radio-group {
 }
 
 .navigator_item {
-        height: calc(100% - 16rpx); 
+        height: calc(100% - 30rpx); 
         position: relative;
         display: flex;
         flex-direction: column;
         align-items: flex-end;
         background-color: rgb(122, 122, 122);
         background-position: 50% 0%;
-        margin: 15rpx 0rpx 15rpx 15rpx;
-        border-radius: 5rpx;
+        margin: 15rpx 0rpx 15rpx 20rpx;
+        border-radius: 10rpx;
 }
 
 .index_header {
@@ -314,13 +314,14 @@ radio-group {
         width: 750rpx;
         margin-left: 1px;
         height: 130rpx;
+        overflow: hidden;
 }
 
 .image_cat_item_title {
         display: -webkit-box;
         margin-left: 105px;
-        margin-bottom: 5px;
         font-size: 30rpx;
+        height: 80rpx;
         line-height: 40rpx;
         word-break: break-all;
         -webkit-box-orient: vertical;
@@ -403,6 +404,7 @@ radio-group {
         overflow: hidden;
         padding: 30rpx 10rpx 20rpx;
         background: #fff;
+        margin-left: 25rpx;
         }
 .scroll_box .scroll-view_x {
         width: 100%;

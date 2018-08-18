@@ -29,16 +29,10 @@
         "text": "主页"
       }, 
       {
-        "selectedIconPath": "resources/caton.png", 
+        "selectedIconPath": "resources/rankon.png", 
         "pagePath": "page/cat/cat", 
-        "iconPath": "resources/cat.png", 
-        "text": "分类"
-      },
-      {
-        "selectedIconPath": "resources/staton.png", 
-        "pagePath": "page/stat/stat",
-        "iconPath": "resources/stat.png", 
-        "text": "监控"
+        "iconPath": "resources/rank.png", 
+        "text": "排行"
       },
       {
         "selectedIconPath": "resources/abouton.png", 

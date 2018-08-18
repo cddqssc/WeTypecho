@@ -22,25 +22,12 @@ Page({
   postslist:[],
   swipelist:[],
   topswiper: 'none',
-  midposts: 'none'
+  midposts: 'none',
+  allcatslist:[],
+  allcatspost:[]
   },
   fetchposts() {
     var that = this;
-    Net.request({
-      url: API.GetPosts(),
-      success: function(res) {
-        var datas = res.data.data;
-        if(API.IsNull(datas)) {      
-          that.setData({
-            midposts: 'block',
-            postslist: datas.map(function (ori_item){
-              var item = API.ParseItem(ori_item);
-              return item;
-            })
-          })
-        }
-      }
-    })
     Net.request({
       url: API.GetSwiperPost(),
       success: function(res) {
@@ -57,7 +44,72 @@ Page({
       }
     })
   },
-
+  touchmove(e) {
+    console.log(e);
+  },
+  fetchallcats() {
+    var that = this;
+    Net.request({
+      url: API.GetCat(),
+      success: function(res) {
+        var datas = res.data.data;
+        that.data.allcatslist = datas.map(function (item){
+          return item;
+        });
+        if(that.data.allcatslist.length>0) {
+          that.changeCatex(that.data.allcatslist[0].mid);
+        }
+        that.setData({
+          allcatslist: that.data.allcatslist
+        })
+        console.log(that.data.allcatslist);
+      }
+    })
+  },
+  fetchpostbymid(mid) {
+    var that = this;  
+    Net.request({
+      url: API.GetPostsbyMID(mid),
+      success: function(res) {
+        var datas = res.data.data;
+        if(datas != null && datas!=undefined) {
+          that.setData({
+            catpostlist: datas.map(function (item){
+              item.posttime = API.getcreatedtime(item.created);
+              return item;
+            })
+          })
+        } else {
+          wx.showToast({
+              title: '该分类没有文章',
+              image: '../../resources/error1.png',
+              duration: 2000
+          })
+        }
+      }
+    })
+  },
+  changeCat(e) {
+    this.data.current_cat_mid = e.target.dataset.mid;
+    this.changeCatex(this.data.current_cat_mid);
+  },
+  changeCatex(mid) {
+    console.log(mid);
+    this.setData({
+      catpostlist: []
+      })
+    this.data.allcatslist = this.data.allcatslist.map(function (item){
+      if(item.mid == mid) 
+        item.active = true;
+      else
+        item.active = false;
+      return item;
+    })
+    this.setData({
+      allcatslist: this.data.allcatslist
+    })
+    this.fetchpostbymid(mid);
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -82,6 +134,7 @@ Page({
         })
       }
     });
+    this.fetchallcats();
     this.fetchposts();
   },
   /**

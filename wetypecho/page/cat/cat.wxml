@@ -4,12 +4,14 @@
         <input class="search_content" bindtap="showsearch" bindinput="searchinput" bindblur="searchBtn" bindconfirm="searchBtn" placeholder="搜索文章"></input>
     </view>
 </view>
-<view class="classify" style="height:{{windowHeight}}px">
-    <scroll-view class="classify_catetory" scroll-y scroll-with-animation="true" style="height:{{windowHeight}}px">
-        <view class="name {{item.active? 'active':''}}" wx:for="{{allcatslist}}" wx:key="item" bindtap="changeCat" data-mid="{{item.mid}}">
+<view class="scroll_box"> 
+    <scroll-view class="scroll-view_x" scroll-x style="width: auto;overflow:hidden;">
+        <view class="item_list {{item.active? 'active':''}}" wx:for="{{allcatslist}}" wx:key="item" bindtap="changeCat" data-mid="{{item.mid}}">
         {{item.name}}
         </view>
     </scroll-view>
+  </view>
+<view class="classify" style="height:{{windowHeight}}px">
     <scroll-view class="classify_detail" scroll-y scroll-with-animation="true" style="height:{{windowHeight}}px">
         <view class="children">
         <block wx:key="id" wx:for="{{catpostlist}}">

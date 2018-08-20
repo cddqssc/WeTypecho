@@ -422,7 +422,8 @@ class WeTypecho_Action extends Typecho_Widget implements Widget_Interface_Do {
     {
         $sec = self::GET('apisec', 'null');
         self::checkApisec($sec);
-        
+        $pageSize = (int) self::GET('pageSize', 1000);
+        $except = (int) self::GET('except', 'null');
         $mid = self::GET('mid', -1);
         $select = [];
         if($mid == 99999999) {
@@ -442,13 +443,23 @@ class WeTypecho_Action extends Typecho_Widget implements Widget_Interface_Do {
         }
         else if($mid>=0)
         {
+            $limit = 0;
+            if($except != 'null') {
+                $posts = $this->db->fetchAll($this->db->select('cid','mid')->from('table.relationships')->where('mid = ?', $mid)->where('cid != ?', $except));
+            } else {
             $posts = $this->db->fetchAll($this->db->select('cid','mid')->from('table.relationships')->where('mid = ?', $mid));
-            foreach($posts as $post) {
+            }
+            foreach($posts as $post) {   
                 $temp = $this->db->fetchAll($this->db->select('cid', 'title', 'created','commentsNum', 'views', 'likes')->from('table.contents')->where('cid = ?', $post['cid'])->where('status = ?', 'publish'));				
                 if(sizeof($temp)>0) {
                     $temp['0']['thumb'] = $this->db->fetchAll($this->db->select('str_value')->from('table.fields')->where('cid = ?', $post['cid']));
                     array_unshift($select,$temp[0]);
                 }
+                $limit++;
+            }
+            $overflow = sizeof($select) - $pageSize;
+            for($cnt = 0; $cnt < $overflow; $cnt++) {
+                array_pop($select);
             }
             if(sizeof($posts)>0) {
                 $this->export($select);

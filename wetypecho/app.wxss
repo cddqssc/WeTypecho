@@ -76,7 +76,7 @@ radio-group {
 }
 
 .detail_info {
-        padding: 20px;
+        padding: 20rpx;
         padding-bottom: 5rpx;
         display: block;
         justify-content: flex-end;
@@ -111,10 +111,15 @@ radio-group {
         font-family: "andale mono";
         font-weight: 600;
         margin-bottom: 10px;
+        border-left-width: 8rpx;
+        border-left-style: solid;
+        border-left-color: #a70101;
+        padding-left: 20rpx;
 }
 
 .view_section {
         padding-bottom: 2rpx;
+        margin-left: 20rpx;
 }
 
 .view_section.section_actors {
@@ -181,6 +186,10 @@ radio-group {
 .text_section_title {
         font-weight: 600;
         margin-bottom: 20px;
+        padding-left: 20rpx;
+        border-left-width: 8rpx;
+        border-left-style: solid;
+        border-left-color: #a70101;
 }
 
 .index_swiper {
@@ -337,6 +346,18 @@ radio-group {
         border-style: none none solid;
         border-bottom-width: 0px;
         border-bottom-color: rgba(170, 170, 170, 1);
+}
+.nav_cat_item {                
+        border-style: solid;
+        border-width: 4rpx;
+        border-color: #a70101;
+        height: 44rpx;
+        border-radius: 20rpx;
+        font-size: 26rpx;
+        padding:5rpx 20rpx;
+        color: #a70101;
+        font-weight: 500rpx;
+        width: auto;
 }
 
 .list_img_view {

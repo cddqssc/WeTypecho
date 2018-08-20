@@ -1,4 +1,5 @@
 <import src="../../template/foot.wxml"></import>
+<view style="width: 100%; height:100%;">
 <view class="minheight view_section" style="display:{{topswiper}}" >
     <swiper class="index_swiper" autoplay="True" duration= "200" interval="3000" indicator-active-color="rgb(167, 1, 1)" indicator-color="#fff" circular="True" previous-margin="20rpx" next-margin="30rpx" indicator-dots="True" lower-threshold="50">
         <block wx:key="id" wx:for="{{swipelist}}">
@@ -51,3 +52,4 @@
 </block>
 </swiper>
 <template is="foot"></template>
+</view>

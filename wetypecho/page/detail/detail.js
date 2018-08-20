@@ -43,7 +43,9 @@ Page({
     qrcode_temp: '',
     painting: {},
     cmbtnclick: false,
-    resendUrl: API.GetDomain() + 'usr/plugins/WeTypecho/res/resend.png'
+    resendUrl: API.GetDomain() + 'usr/plugins/WeTypecho/res/resend.png',
+    related_post:[],
+    display_related: 'none'
   },
 
   /**
@@ -78,6 +80,7 @@ Page({
       }
     }
   },
+  //获取文章详细
   getdetails(cid) {
     var that = this;
     Net.request({
@@ -96,13 +99,39 @@ Page({
         that.setData({
           createdtime: that.data.createdtime
         })
+        //获取相关文章
+        console.log(that.data.item);
+        that.fetchpostbymid(that.data.item.mid)
       }
     })
     //获取文章评论
     this.getcomments(cid);
     //获取点赞列表
-    this.getlikelist(cid);
-    //获取文章详细
+    this.getlikelist(cid);                
+  },
+  fetchpostbymid(mid) {
+    var that = this;
+    console.log("11"+mid);
+    Net.request({
+      url: API.GetPostsbyMIDLimit(mid,3,that.data.item.cid),
+      success: function(res) {
+        var datas = res.data.data;
+        console.log("11"+res.data);
+        if(datas != null && datas!=undefined) {
+            that.data.related_post = datas.map(function (item){
+            item.posttime = API.getcreatedtime(item.created);
+            return item;
+          });
+          if(that.data.related_post.length>0){
+          that.setData({
+            display_related: 'block',
+            related_post: that.data.related_post,
+            postheight: that.data.related_post.length * 180 + 'rpx'            
+          })
+        }
+        }
+      }
+    })
   },
   getlikelist(cid) {
     var that = this;

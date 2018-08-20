@@ -40,6 +40,10 @@ module.exports = {
     GetPostsbyMID: function(mid){
         return this.appendAPISEC(API_URL + 'getpostbymid?mid=' + mid);
     },
+    GetPostsbyMIDLimit: function(mid,limit,except){
+        console.log(API_URL + 'getpostbymid?mid=' + mid + '&pageSize=' + limit + '&except=' + except);
+        return this.appendAPISEC(API_URL + 'getpostbymid?mid=' + mid + '&pageSize=' + limit + '&except=' + except);
+    },
     PostLike: function(cid,openid){
         return this.appendAPISEC(API_URL + 'likePost?cid=' + cid + '&openid=' + openid);
     },
@@ -182,8 +186,14 @@ module.exports = {
             thumb: ori_item.thumb[0].str_value,
             views: ori_item.views[0].views,
             likes: ori_item.likes[0].likes,
-            category: ori_item.categories.lenth > 0 ? ori_item.categories[0].name : null
+            //category: ori_item.categories.length > 0 ? ori_item.categories[0].name : null,
+            category: ori_item.categories.map(function (item){
+                item.length = item.name.length;
+                return item;
+            }),
+            mid: ori_item.categories.length > 0 ? ori_item.categories[0].mid : null
         };
+        console.log(post);
         return post;
     },
     appendAPISEC: function(url) {

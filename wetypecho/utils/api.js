@@ -41,7 +41,6 @@ module.exports = {
         return this.appendAPISEC(API_URL + 'getpostbymid?mid=' + mid);
     },
     GetPostsbyMIDLimit: function(mid,limit,except){
-        console.log(API_URL + 'getpostbymid?mid=' + mid + '&pageSize=' + limit + '&except=' + except);
         return this.appendAPISEC(API_URL + 'getpostbymid?mid=' + mid + '&pageSize=' + limit + '&except=' + except);
     },
     PostLike: function(cid,openid){
@@ -170,6 +169,7 @@ module.exports = {
         return(gb_str + mb_str + kb_str + b_str);
     },
     ParseItem: function(ori_item) {
+        var that = this;
         var post_date = {
             year: ori_item.year,
             month: ori_item.month,
@@ -189,16 +189,23 @@ module.exports = {
             //category: ori_item.categories.length > 0 ? ori_item.categories[0].name : null,
             category: ori_item.categories.map(function (item){
                 item.length = item.name.length;
+                item.background = that.randomHexColor();
                 return item;
             }),
             mid: ori_item.categories.length > 0 ? ori_item.categories[0].mid : null
         };
-        console.log(post);
         return post;
     },
     appendAPISEC: function(url) {
         var request = url+"&apisec="+apisec;
         return (request);
+    },
+    randomHexColor() { //随机生成十六进制颜色
+        var hex = Math.floor(Math.random() * 16777216).toString(16); //生成ffffff以内16进制数
+        while (hex.length < 6) { //while循环判断hex位数，少于6位前面加0凑够6位
+        hex = '0' + hex;
+        }
+        return '#' + hex; //返回‘#'开头16进制颜色
     },
     ConfirmAuth: function() {
         wx.getSetting({

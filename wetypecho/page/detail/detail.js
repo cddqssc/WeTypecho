@@ -100,7 +100,6 @@ Page({
           createdtime: that.data.createdtime
         })
         //获取相关文章
-        console.log(that.data.item);
         that.fetchpostbymid(that.data.item.mid)
       }
     })
@@ -111,12 +110,10 @@ Page({
   },
   fetchpostbymid(mid) {
     var that = this;
-    console.log("11"+mid);
     Net.request({
       url: API.GetPostsbyMIDLimit(mid,3,that.data.item.cid),
       success: function(res) {
         var datas = res.data.data;
-        console.log("11"+res.data);
         if(datas != null && datas!=undefined) {
             that.data.related_post = datas.map(function (item){
             item.posttime = API.getcreatedtime(item.created);

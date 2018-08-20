@@ -48,7 +48,6 @@ Page({
     })
   },
   touchmove(e) {
-    console.log(e);
   },
   fetchallcats() {
     var that = this;
@@ -63,14 +62,12 @@ Page({
         that.data.allcatpostlist = datas.map(function (item){
           return null;
         });
-        console.log(that.data.allcatslist);
         if(that.data.allcatslist.length>0) {
           that.changeCatex(that.data.allcatslist[0].mid);
         }
         that.setData({
           allcatslist: that.data.allcatslist
         })
-        console.log(that.data.allcatslist);
       }
     })
   },
@@ -86,7 +83,6 @@ Page({
             item.posttime = API.getcreatedtime(item.created);
             return item;
           });
-          console.log(that.data.allcatpostlist);
           that.setData({
             allcatpostlist: that.data.allcatpostlist,
             postheight: that.data.allcatpostlist[idx].length * 170 + 'rpx'            
@@ -109,15 +105,13 @@ Page({
   },
   change_finish(e) {
     var that = this;
-    console.log(e.detail.current);
-    console.log(this.data.current_cat);
     if(e.detail.current != this.data.current_cat) {
       this.changeCatex(this.data.allcatslist[e.detail.current].mid);      
       this.setData({
         current_cat: e.detail.current,
         current_position: that.data.allcatslist[e.detail.current].id_tag
       })
-      console.log(this.data.current_position);
+
     }
   },
   changeCat(e) {
@@ -131,7 +125,6 @@ Page({
     }
   },
   changeCatex(mid) {
-    console.log(mid);
     this.setData({
       catpostlist: []
       })

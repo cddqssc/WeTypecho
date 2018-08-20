@@ -348,16 +348,15 @@ radio-group {
         border-bottom-color: rgba(170, 170, 170, 1);
 }
 .nav_cat_item {                
-        border-style: solid;
-        border-width: 4rpx;
-        border-color: #a70101;
-        height: 44rpx;
-        border-radius: 20rpx;
+        height: auto;
+        border-radius: 30rpx;
         font-size: 26rpx;
-        padding:5rpx 20rpx;
-        color: #a70101;
+        color: #ffffff;
         font-weight: 500rpx;
         width: auto;
+        padding: 5rpx 10rpx;
+        line-height: 22px; /*垂直居中*/
+        text-align: center;
 }
 
 .list_img_view {
@@ -384,7 +383,9 @@ radio-group {
 }
 
 .replay_view {
-        background: #ececec;
+        background: #f7f7f7;
+        padding: 10rpx;
+        margin-right: 20rpx;
 }
 
 .replay_text {

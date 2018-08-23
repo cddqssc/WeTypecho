@@ -130,10 +130,10 @@ class WeTypecho_Action extends Typecho_Widget implements Widget_Interface_Do {
         $sec = self::GET('apisec', 'null');
         self::checkApisec($sec);
         $temp = Typecho_Widget::widget('Widget_Options')->plugin('WeTypecho')->hiddenmid;                
-        $select = $this->db->select('name','slug','type','description','mid')->from('table.metas');  
+        $select = $this->db->select('name','slug','type','description','mid')->from('table.metas')->where('table.metas.type = ?','category');  
         $hiddenmids = explode(",",$temp);
         if(sizeof($hiddenmids)>0 && intval($hiddenmids[0])) {        
-        $select->where('mid in ?', $hiddenmids);    
+        $select->where('mid in ?', $hiddenmids);
         $hidden = true;    
         }
         $cat = $this->db->fetchAll($select);

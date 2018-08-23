@@ -21,7 +21,7 @@
     <view  style="display: flex;" >
         <block wx:key="id" wx:for="{{item.category}}" wx:for-item="m_categories">
         <view style="margin-left: 16rpx; margin-bottom: 16rpx;">
-            <navigator class="nav_cat_item" style="background: {{m_categories.background}}"  hover-class="navigator-hover" url="../detail/detail?item={{item.cid}}">
+            <navigator class="nav_cat_item" style="background: {{m_categories.background}}"  hover-class="navigator-hover" url="../list/list?mid={{m_categories.mid}}&name={{m_categories.name}}">
             <text ># {{m_categories.name}}</text>
             </navigator>
         </view>

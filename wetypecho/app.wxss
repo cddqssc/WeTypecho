@@ -322,6 +322,16 @@ radio-group {
         float: left;
 }
 
+.rank_cat_box {
+        margin-top: 35rpx;
+        width: 66rpx;
+        height: 100rpx;
+        float: left;
+        font-size: 48rpx;
+        text-align: center;
+        color: #636262;
+}
+
 .view_sectionlist.movielist {
         height: 100%;
 }
@@ -462,7 +472,7 @@ radio-group {
 }
 
 .active{
-        font-size: 40rpx;
+        font-size: 34rpx;
         padding-bottom: 12rpx;
         border-bottom: 6rpx solid rgb(167, 1, 1);
         background: #fff;

@@ -19,8 +19,8 @@
         <image class="list_img_view" src="../../resources/like.png"></image>
         <text class="list_text_view">{{item.likes}}</text>
     </view>
-<view class="footerviewwebsite" style="justify-content: left; font-size: 20rpx;">  
-    <text style>{{aboutstr}}</text>
+<view class="footerviewwebsite" style="justify-content: left; font-size: 24rpx;">  
+    <text>{{aboutstr}}</text>
 </view>    
 </view>
 <template is="entry" data="{{...content}}" bindtap="clicklink" />

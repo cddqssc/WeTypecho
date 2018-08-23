@@ -33,7 +33,6 @@ Page({
   },
 
   changeCat(e) {
-    console.log(e.target.dataset);    
     this.data.ranklist[this.data.active_idx].active = false;
     this.data.ranklist[e.target.dataset.idx].active = true;
     this.setData({
@@ -52,7 +51,6 @@ Page({
         ranklist: this.data.ranklist
       })
     }
-    console.log(e.detail.current);
     this.fetchrank(e.detail.current);
   },
 
@@ -103,14 +101,13 @@ Page({
       url: API.GetRankedPosts(idx),
       success: function(res) {
         var datas = res.data.data;
-        var rank = 0;        
+        var rank = 1;        
         that.data.allrankpostlist[idx] = datas.map(function (ori_item){
           var item = API.ParseItem(ori_item);
           item.posttime = API.getcreatedtime(item.created);
           item.rank = rank++;
           return item;
         });
-        console.log(that.data.allrankpostlist);
         that.setData({
           allrankpostlist: that.data.allrankpostlist,
           postheight: that.data.allrankpostlist[idx].length * 170 + 'rpx',

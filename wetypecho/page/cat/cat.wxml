@@ -22,8 +22,9 @@
         <navigator class="nav_postlist_item"  hover-class="navigator-hover" url="../detail/detail?item={{item.cid}}">
             <view class="view_postlist_item" >
                 <view class="view_catpost" >
-                    <image class="image_cat_box" style="display:{{item.rank<=2 ? 'block' : 'none'}}"  mode="scaleToFill" src="{{item.rank==0 ? '../../resources/first.bmp' : (item.rank==1 ? '../../resources/second.bmp' : (item.rank==2 ? '../../resources/third.bmp' : 'none')) }}"/>
-                    <image class="image_cat_thumb" style="margin-left: 16rpx;"  mode="aspectFit" src="{{item.thumb}}"/>
+                    <image class="image_cat_box" style="display:{{item.rank<=3 ? 'block' : 'none'}}"  mode="center" src="{{item.rank==1 ? '../../resources/first.png' : (item.rank==2 ? '../../resources/second.png' : (item.rank==3 ? '../../resources/third.png' : '../../resources/third.png')) }}"/>
+                    <view class="rank_cat_box" style="display:{{item.rank>3 ? 'block' : 'none'}}">{{item.rank}}</view>
+                    <image class="image_cat_thumb" style="margin-left: 24rpx;"  mode="aspectFit" src="{{item.thumb}}"/>
                     <text class="image_cat_item_title" style="margin-left: 290rpx;" >{{item.title}}</text>
                     <view style="margin-left: 290rpx; margin-top: 10rpx;" >
                         <image class="listpg_first_img" src="../../resources/time.png"></image>

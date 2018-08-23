@@ -315,6 +315,13 @@ radio-group {
         box-shadow: 0 0 6px rgba(30, 20, 20, 0.1);
 }
 
+.image_cat_box {
+        margin-top: 15rpx;
+        width: 66rpx;
+        height: 100rpx;
+        float: left;
+}
+
 .view_sectionlist.movielist {
         height: 100%;
 }
@@ -441,11 +448,21 @@ radio-group {
         display: inline-block;
         font-size: 30rpx;
         font-family: Verdana, Geneva, Tahoma, sans-serif;
-        font-weight: 600;
+        font-weight: 550;
+}
+
+.item_rank_list{
+        width: 250rpx;
+        margin-right: 0rpx;
+        display: inline-block;
+        font-size: 30rpx;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-weight: 550;
+        text-align: center;
 }
 
 .active{
-        font-size: 34rpx;
+        font-size: 40rpx;
         padding-bottom: 12rpx;
         border-bottom: 6rpx solid rgb(167, 1, 1);
         background: #fff;
@@ -532,15 +549,25 @@ radio-group {
 .search_read_only .search_content {
         display: flex;
         align-items: center;
-        border-radius: 100rpx;
+        border-top-right-radius: 100rpx;
+        border-bottom-right-radius: 100rpx;
         color: rgb(53, 53, 53);
         background: #efefef;
-        padding: 0 30rpx;
+        padding: 0 2rpx;
         height: 55rpx;
         margin: 0 auto;
         font-size: 26rpx;
         width: 100%;
 }
+
+.search_icon {
+        background: #EFEFEF;
+        height: 55rpx;
+        width: 55rpx;
+        border-top-left-radius: 100rpx;
+        border-bottom-left-radius: 100rpx;
+}
+
 .search_read_only .search_content .search_input {
         font-size: 26rpx;
         width: 100%;
@@ -568,7 +595,9 @@ radio-group {
 .comment-input {
         background-color: #f5f7f7;
         margin-top: 12rpx;
+        margin-left: 12rpx;
         padding: 2rpx 3rpx 2rpx 10rpx;
+        padding-left: 24rpx;
         font-size: 14px;
         height: 60rpx;
         width: 300rpx;
@@ -593,8 +622,8 @@ radio-group {
         text-align: center;
         padding: 0 2px !important;
         font-size: 14px;
-        background-color: #eee;
-        color: #959595;
+        background-color: rgb(3, 173, 0);
+        color: #ffffff;
 }
 .img-plus {
         width: 48rpx !important;

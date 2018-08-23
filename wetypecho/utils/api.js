@@ -19,6 +19,9 @@ module.exports = {
     GetPosts: function() {
         return this.appendAPISEC(API_URL + 'posts?&pageSize=10');
     },
+    GetRankedPosts: function(idx) {
+        return this.appendAPISEC(API_URL + 'posts?&pageSize=30' + '&idx=' + idx);
+    },
     GetAboutCid: function() {
         return this.appendAPISEC(API_URL + 'getaboutcid?');
     },
@@ -192,7 +195,8 @@ module.exports = {
                 item.background = that.randomHexColor();
                 return item;
             }),
-            mid: ori_item.categories.length > 0 ? ori_item.categories[0].mid : null
+            mid: ori_item.categories.length > 0 ? ori_item.categories[0].mid : null,
+            showshare: ori_item.showshare
         };
         return post;
     },

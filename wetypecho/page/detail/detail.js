@@ -45,15 +45,14 @@ Page({
     cmbtnclick: false,
     resendUrl: API.GetDomain() + 'usr/plugins/WeTypecho/res/resend.png',
     related_post:[],
-    display_related: 'none'
+    display_related: 'none',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad (options) {
-    this.data.cid = options.item;
-    this.getdetails(options.item);
+    this.data.cid = options.item;    
   },
   eventRun_bind_tap (event) {
     var href = event.target.dataset._el.attr.href;
@@ -92,7 +91,7 @@ Page({
         let data_parse = app.towxml.toJson(data,'markdown');
         that.setData({
           content: data_parse,
-          item: parsed_item
+          item: parsed_item,          
         })
         //发布时间
         that.data.createdtime = API.getcreatedtime(parsed_item.created);
@@ -208,6 +207,7 @@ Page({
    */
   onShow () {
     var that = this;
+    this.getdetails(that.data.cid);
     if( API.loginsuccess(app)) {
       Net.request({
         url: API.Getuserlikedinfo(that.data.cid,app.Data.userInfo.openid),

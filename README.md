@@ -28,7 +28,7 @@ WeTypecho则能帮您快速搭建微信小程序，将Typecho博客的内容映�
 ## 扫码预览 ##
 ![xcx.jpg][3]
 ## 动图预览 ##
-动图稍大(6.5M)，请耐心等待加载。
+[点击预览动图][6]
 
 ![WeTypecho1.1.gif][4]
 ## 安装 ##
@@ -40,3 +40,4 @@ WeTypecho则能帮您快速搭建微信小程序，将Typecho博客的内容映�
   [3]: http://res.2012.pro/2018/08/11/1533954773.jpg
   [4]: http://res.2012.pro/2018/08/25/1535165812.gif
   [5]: https://2012.pro/index.php/20180811/cid=77.html
+  [6]: https://2012.pro/index.php/20180806/cid=37.html#article-header-6

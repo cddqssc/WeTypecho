@@ -1,24 +1,32 @@
 <import src="../../template/foot.wxml" />
 <view class="top_search">
     <view class="search_read_only">
-        <input class="search_content" bindtap="showsearch" bindinput="searchinput" bindblur="searchBtn" bindconfirm="searchBtn" placeholder="搜索文章"></input>
+        <image class="search_icon" src='../../resources/search.png' mode="center"></image>
+        <input class="search_content" bindtap="showsearch" bindinput="searchinput" bindblur="searchBtn" bindconfirm="searchBtn" placeholder="搜索关键字..."></input>
     </view>
 </view>
-<view class="classify" style="height:{{windowHeight}}px">
-    <scroll-view class="classify_catetory" scroll-y scroll-with-animation="true" style="height:{{windowHeight}}px">
-        <view class="name {{item.active? 'active':''}}" wx:for="{{allcatslist}}" wx:key="item" bindtap="changeCat" data-mid="{{item.mid}}">
+<view class="scroll_box" style="margin-left:0rpx;"> 
+    <scroll-view class="scroll-view_x" scroll-x style="width: auto;overflow:hidden;">
+        <view class="item_rank_list {{item.active? 'active':''}}" wx:for="{{ranklist}}" wx:key="item" bindtap="changeCat" data-idx="{{item.idx}}">
         {{item.name}}
         </view>
     </scroll-view>
-    <scroll-view class="classify_detail" scroll-y scroll-with-animation="true" style="height:{{windowHeight}}px">
+</view>
+<swiper style="margin-left:0rpx; height:{{postheight}}" bindchange="change_finish" duration= "200" current="{{active_idx}}" circular="True" indicator-color = 'rgba(0, 0, 0, 0)' indicator-active-color = 'rgba(0, 0, 0, 0)' indicator-dots="false" lower-threshold="50">
+<block wx:for="{{allrankpostlist}}" wx:key="id" wx:for-item="item_cat">
+<swiper-item  style="background-color: transparent;">
+<view class="classify">
+    <scroll-view class="classify_detail" scroll-y scroll-with-animation="true">
         <view class="children">
-        <block wx:key="id" wx:for="{{catpostlist}}">
+        <block wx:key="id" wx:for="{{item_cat}}">
         <navigator class="nav_postlist_item"  hover-class="navigator-hover" url="../detail/detail?item={{item.cid}}">
             <view class="view_postlist_item" >
                 <view class="view_catpost" >
-                    <image class="image_cat_thumb"  mode="aspectFit" src="{{item.thumb[0].str_value}}"/>
-                    <text class="m-block image_cat_item_title cut_text" >{{item.title}}</text>
-                    <view style="margin-left: 84px; margin-top: 5px;" >
+                    <image class="image_cat_box" style="display:{{item.rank<=3 ? 'block' : 'none'}}"  mode="center" src="{{item.rank==1 ? '../../resources/first.png' : (item.rank==2 ? '../../resources/second.png' : (item.rank==3 ? '../../resources/third.png' : '../../resources/third.png')) }}"/>
+                    <view class="rank_cat_box" style="display:{{item.rank>3 ? 'block' : 'none'}}">{{item.rank}}</view>
+                    <image class="image_cat_thumb" style="margin-left: 24rpx;"  mode="aspectFit" src="{{item.thumb}}"/>
+                    <text class="image_cat_item_title" style="margin-left: 290rpx;" >{{item.title}}</text>
+                    <view style="margin-left: 290rpx; margin-top: 10rpx;" >
                         <image class="listpg_first_img" src="../../resources/time.png"></image>
                         <text class="list_text_view" >{{item.posttime}}</text>
                         <image class="list_img_view" src="../../resources/comments.png"></image>
@@ -33,6 +41,9 @@
         </navigator>
         </block>
         </view>
-        <template is="foot"></template>
     </scroll-view>
 </view>
+</swiper-item>
+</block>
+</swiper>
+<template is="foot"></template>

@@ -19,8 +19,8 @@
         <image class="list_img_view" src="../../resources/like.png"></image>
         <text class="list_text_view">{{item.likes}}</text>
     </view>
-<view class="footerviewwebsite" style="justify-content: left; font-size: 20rpx;">  
-    <text style>{{aboutstr}}</text>
+<view class="footerviewwebsite" style="justify-content: left; font-size: 24rpx;">  
+    <text>{{aboutstr}}</text>
 </view>    
 </view>
 <template is="entry" data="{{...content}}" bindtap="clicklink" />
@@ -68,14 +68,14 @@
             <button class="comment-button touch-active" formType="submit" bindtap = "sendcm">发送</button>
             <view class="cmview" bindtap="zanstart">
                 <image src="{{zanimg}}" class="img-plus" mode="scaleToFill"></image>
-                <text class="cmicontext">{{item.likes}}人赞</text>
+                <text class="cmicontext">{{item.likes}}赞</text>
             </view>
-            <view class="cmview">
+            <view class="cmview" style="display:{{item.showshare == 1 ? 'flex' : 'none'}};">
                 <button class="sharebtn touch-active" id="shareBtn" open-type="share" plain='true' type="primary" hover-class="other-button-hover" style="background-image:url({{resendUrl}}); background-size: 100% 100%;">
                 </button>
                 <text class="cmicontext">转发</text>
             </view>
-            <view class="cmview" bindtap="share">
+            <view class="cmview" bindtap="share" style="display:{{item.showshare == 1 ? 'flex' : 'none'}};">
                 <image src="../../resources/share.png" class="img-plus" mode="scaleToFill"></image>
                 <text class="cmicontext">分享</text>
             </view>

@@ -76,7 +76,7 @@ radio-group {
 }
 
 .detail_info {
-        padding: 20px;
+        padding: 20rpx;
         padding-bottom: 5rpx;
         display: block;
         justify-content: flex-end;
@@ -111,11 +111,15 @@ radio-group {
         font-family: "andale mono";
         font-weight: 600;
         margin-bottom: 10px;
+        border-left-width: 8rpx;
+        border-left-style: solid;
+        border-left-color: #a70101;
+        padding-left: 20rpx;
 }
 
 .view_section {
-        padding: 20px 20px 0px;
-        padding-top: 20px;
+        padding-bottom: 2rpx;
+        margin-left: 20rpx;
 }
 
 .view_section.section_actors {
@@ -182,10 +186,18 @@ radio-group {
 .text_section_title {
         font-weight: 600;
         margin-bottom: 20px;
+        padding-left: 20rpx;
+        border-left-width: 8rpx;
+        border-left-style: solid;
+        border-left-color: #a70101;
 }
 
 .index_swiper {
-        height: 200px;
+        height: 340rpx;
+}
+
+.index_swiper_post {
+        
 }
 
 .detaillikeswp {
@@ -198,31 +210,28 @@ radio-group {
 }
 
 .post_title {
-        margin-top: auto;
-        margin-bottom: 0px;
+        margin-top: 10px;
         left: 0px;
         right: 0px;
         top: 0px;
         bottom: 0px;
-        display: block;
         align-self: flex-start;
         width: 100%;
-        height: 50px;
         padding-left: 10px;
         padding-top: 10px;
-        background-color: rgba(66, 66, 66, 0.882353);
-        color: rgb(255, 255, 255);
+        color: rgb(66, 66, 66);
 }
 
 .navigator_item {
-        height: 100%;
+        height: calc(100% - 30rpx); 
         position: relative;
         display: flex;
         flex-direction: column;
         align-items: flex-end;
         background-color: rgb(122, 122, 122);
         background-position: 50% 0%;
-        padding-top: -19px;
+        margin: 15rpx 0rpx 15rpx 20rpx;
+        border-radius: 10rpx;
 }
 
 .index_header {
@@ -285,8 +294,7 @@ radio-group {
         border-left-style: none;
 }
 
-.stat_list_item {
-        
+.stat_list_item {        
         padding: 8px;
         border-style: solid;
         border-bottom-width: 1px;
@@ -297,9 +305,31 @@ radio-group {
 }
 
 .image_cat_thumb {
-        width: 75px;
-        height: 50px;
+        width: 180rpx;
+        height: 130rpx;
         float: left;
+        border-style: solid;
+        border-radius: 10rpx;
+        border-width: 2rpx;
+        border-color: #d1d1d1;
+        box-shadow: 0 0 6px rgba(30, 20, 20, 0.1);
+}
+
+.image_cat_box {
+        margin-top: 15rpx;
+        width: 66rpx;
+        height: 100rpx;
+        float: left;
+}
+
+.rank_cat_box {
+        margin-top: 35rpx;
+        width: 66rpx;
+        height: 100rpx;
+        float: left;
+        font-size: 48rpx;
+        text-align: center;
+        color: #636262;
 }
 
 .view_sectionlist.movielist {
@@ -307,21 +337,43 @@ radio-group {
 }
 
 .view_catpost {
-        width: 600rpx;
+        width: 750rpx;
         margin-left: 1px;
-        height: 40;
+        height: 130rpx;
+        overflow: hidden;
 }
 
 .image_cat_item_title {
-        margin-left: 84px;
-        margin-bottom: 5px;
-        font-size: 16px;
+        display: -webkit-box;
+        margin-left: 105px;
+        font-size: 30rpx;
+        height: 80rpx;
+        line-height: 40rpx;
+        word-break: break-all;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp:2;
+        font-weight: 400 !important;
+        letter-spacing: 1px;
+        overflow: hidden;
+        text-overflow:ellipsis;
+        padding-right: 60rpx;
 }
 
 .nav_postlist_item {
         border-style: none none solid;
-        border-bottom-width: 1px;
+        border-bottom-width: 0px;
         border-bottom-color: rgba(170, 170, 170, 1);
+}
+.nav_cat_item {                
+        height: auto;
+        border-radius: 30rpx;
+        font-size: 26rpx;
+        color: #ffffff;
+        font-weight: 500rpx;
+        width: auto;
+        padding: 5rpx 10rpx;
+        line-height: 22px; /*垂直居中*/
+        text-align: center;
 }
 
 .list_img_view {
@@ -348,7 +400,9 @@ radio-group {
 }
 
 .replay_view {
-        background: #ececec;
+        background: #f7f7f7;
+        padding: 10rpx;
+        margin-right: 20rpx;
 }
 
 .replay_text {
@@ -383,6 +437,46 @@ radio-group {
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
+}
+.scroll_box{
+        width: 100%;
+        overflow: hidden;
+        padding: 30rpx 10rpx 20rpx;
+        background: #fff;
+        margin-left: 25rpx;
+        }
+.scroll_box .scroll-view_x {
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        border: 0 solid #ffffff;
+        }
+
+.item_list{
+        width: auto;
+        margin-right: 23rpx;
+        display: inline-block;
+        font-size: 30rpx;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-weight: 550;
+}
+
+.item_rank_list{
+        width: 250rpx;
+        margin-right: 0rpx;
+        display: inline-block;
+        font-size: 30rpx;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-weight: 550;
+        text-align: center;
+}
+
+.active{
+        font-size: 34rpx;
+        padding-bottom: 12rpx;
+        border-bottom: 6rpx solid rgb(167, 1, 1);
+        background: #fff;
+        color: rgb(167, 1, 1);
 }
 .classify .classify_catetory .active {
         border-left: 6rpx solid #ff6a3c;
@@ -424,7 +518,7 @@ radio-group {
 }
 
 .footerview {
-        padding-top: 55px;
+        padding-top: 30rpx;
         width: 100%;
         display: flex;
         justify-content: center;
@@ -465,21 +559,32 @@ radio-group {
 .search_read_only .search_content {
         display: flex;
         align-items: center;
-        border-radius: 100rpx;
+        border-top-right-radius: 100rpx;
+        border-bottom-right-radius: 100rpx;
         color: rgb(53, 53, 53);
         background: #efefef;
-        padding: 0 30rpx;
+        padding: 0 2rpx;
         height: 55rpx;
         margin: 0 auto;
         font-size: 26rpx;
         width: 100%;
 }
+
+.search_icon {
+        background: #EFEFEF;
+        height: 55rpx;
+        width: 55rpx;
+        border-top-left-radius: 100rpx;
+        border-bottom-left-radius: 100rpx;
+}
+
 .search_read_only .search_content .search_input {
         font-size: 26rpx;
         width: 100%;
 }
 .cut_text {
-        display: block;
+        display: -webkit-box;
+        -webkit-line-clamp:2;
         overflow: hidden;
         white-space: nowrap;
         text-overflow:ellipsis;
@@ -500,7 +605,9 @@ radio-group {
 .comment-input {
         background-color: #f5f7f7;
         margin-top: 12rpx;
+        margin-left: 12rpx;
         padding: 2rpx 3rpx 2rpx 10rpx;
+        padding-left: 24rpx;
         font-size: 14px;
         height: 60rpx;
         width: 300rpx;
@@ -525,8 +632,8 @@ radio-group {
         text-align: center;
         padding: 0 2px !important;
         font-size: 14px;
-        background-color: #eee;
-        color: #959595;
+        background-color: rgb(3, 173, 0);
+        color: #ffffff;
 }
 .img-plus {
         width: 48rpx !important;

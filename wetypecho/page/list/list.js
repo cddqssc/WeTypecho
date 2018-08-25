@@ -26,9 +26,10 @@ Page({
         that.setData({          
           allpostslist: datas.map(function (ori_item){
             var item = API.ParseItem(ori_item);
+            item.posttime = API.getcreatedtime(item.created);            
             return item;
           })
-        })
+        })        
       }
     })
   },
@@ -42,6 +43,7 @@ Page({
           that.setData({
             allpostslist: datas.map(function (ori_item){
               var item = API.ParseItem(ori_item);
+              item.posttime = API.getcreatedtime(item.created);  
               return item;
             })
           })
@@ -68,15 +70,43 @@ Page({
         title:'所有文章列表：',
       })
     }
-    else {
+    else if(e.keyword != undefined) {
       var keyword = e.keyword;
       this.setData({
         title:'搜索关键字 \“' + keyword + '\” 的结果：',
       })
       this.fetchserach(keyword);
-    }
+    } else if(e.mid != undefined && e.name != undefined) {
+        this.setData({
+          title:'分类 \“' + e.name + '\” 下的所有文章：',
+        })
+        this.fetchpostbymid(e.mid)
+      }
   },
-
+  fetchpostbymid(mid) {
+    var that = this;
+    Net.request({
+      url: API.GetPostsbyMID(mid),
+      success: function(res) {
+        var datas = res.data.data;
+        if(datas != null && datas!=undefined) {
+          that.setData({
+            allpostslist: datas.map(function (item){
+              item.posttime = API.getcreatedtime(item.created);
+              item.thumb = item.thumb[0].str_value;
+              return item;
+            })
+          })
+        } else {
+          wx.showToast({
+              title: '该分类没有文章',
+              image: '../../resources/error1.png',
+              duration: 2000
+          })
+        }
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

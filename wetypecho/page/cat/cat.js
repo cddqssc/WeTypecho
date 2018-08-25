@@ -6,7 +6,11 @@ var API = require('../../utils/api');
 // 获取全局应用程序实例对象
 var app = getApp();
 var Net = require('../../utils/net');
-
+function ranktype(name,active,idx) {
+  this.name = name;
+  this.active = active;
+  this.idx = idx;
+}
 // 创建页面实例对象
 Page({
   /**
@@ -20,74 +24,34 @@ Page({
   data: {
     allcatslist:[],
     catpostlist:[],
+    ranklist: [],
+    active_idx: 0,
     windowHeight: 100,
     current_cat_mid: -1,
-    searchkeyword: ''
+    searchkeyword: '',
+    allrankpostlist: [null,null,null]
   },
 
-  fetchallcats() {
-    var that = this;
-    Net.request({
-      url: API.GetCat(),
-      success: function(res) {
-        var datas = res.data.data;
-        that.data.allcatslist = datas.map(function (item){
-          return item;
-        });
-        if(that.data.allcatslist.length>0) {
-          that.data.allcatslist[0].active = true;
-          that.changeCatex(that.data.allcatslist[0].mid);
-        }
-        that.setData({
-          allcatslist: that.data.allcatslist
-        })
-      }
-    })
-  },
   changeCat(e) {
-    this.data.current_cat_mid = e.target.dataset.mid;
-    this.changeCatex(this.data.current_cat_mid);
-  },
-
-  changeCatex(mid) {
+    this.data.ranklist[this.data.active_idx].active = false;
+    this.data.ranklist[e.target.dataset.idx].active = true;
     this.setData({
-      catpostlist: []
-      })
-    this.data.allcatslist = this.data.allcatslist.map(function (item){
-      if(item.mid == mid) 
-        item.active = true;
-      else
-        item.active = false;
-      return item;
+      active_idx: e.target.dataset.idx,
+      ranklist: this.data.ranklist,
     })
-    this.setData({
-      allcatslist: this.data.allcatslist
-    })
-    this.fetchpostbymid(mid);
+    this.fetchrank(e.target.dataset.idx);
   },
-
-  fetchpostbymid(mid) {
+  change_finish(e) {
     var that = this;
-    Net.request({
-      url: API.GetPostsbyMID(mid),
-      success: function(res) {
-        var datas = res.data.data;
-        if(datas != null && datas!=undefined) {
-          that.setData({
-            catpostlist: datas.map(function (item){
-              item.posttime = API.getcreatedtime(item.created);
-              return item;
-            })
-          })
-        } else {
-          wx.showToast({
-              title: '该分类没有文章',
-              image: '../../resources/error1.png',
-              duration: 2000
-          })
-        }
-      }
-    })
+    if(e.detail.current != this.data.active_idx) {      
+      this.data.ranklist[this.data.active_idx].active = false;
+      this.data.ranklist[e.detail.current].active = true;
+      this.setData({
+        active_idx: e.detail.current,
+        ranklist: this.data.ranklist
+      })
+    }
+    this.fetchrank(e.detail.current);
   },
 
   searchBtn: function(e) {
@@ -121,7 +85,35 @@ Page({
         })
       }
     })
-    this.fetchallcats();
+    this.data.ranklist.push(new ranktype('浏览量',1,0));
+    this.data.ranklist.push(new ranktype('评论数',0,1));
+    this.data.ranklist.push(new ranktype('点赞数',0,2));
+    this.setData({
+      ranklist: this.data.ranklist,
+      active_idx: 0
+    })
+    this.fetchrank(0);
+  },
+
+  fetchrank(idx) {
+    var that = this;
+    Net.request({
+      url: API.GetRankedPosts(idx),
+      success: function(res) {
+        var datas = res.data.data;
+        var rank = 1;        
+        that.data.allrankpostlist[idx] = datas.map(function (ori_item){
+          var item = API.ParseItem(ori_item);
+          item.posttime = API.getcreatedtime(item.created);
+          item.rank = rank++;
+          return item;
+        });
+        that.setData({
+          allrankpostlist: that.data.allrankpostlist,
+          postheight: that.data.allrankpostlist[idx].length * 170 + 'rpx',
+        })
+      }
+    })
   },
 
   /**

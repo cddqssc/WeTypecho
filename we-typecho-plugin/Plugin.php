@@ -106,6 +106,10 @@ class WeTypecho_Plugin implements Typecho_Plugin_Interface
         $form->addInput($aboutCid);
         $monitorOid = new Typecho_Widget_Helper_Form_Element_Text('monitorOid', NULL, '1', _t('资源监控所允许的微信openid'),  _t('资源监控所允许的微信openid，可在wetypecho控制台查看自己Openid来添加'));
         $form->addInput($monitorOid);
+        $hiddenmid = new Typecho_Widget_Helper_Form_Element_Text('hiddenmid', NULL, NULL, _t('要在小程序端显示的分类的mid(其余隐藏)，为了过微信审核你懂的^-^，可在过审核后取消隐藏（不填写则不隐藏任何分类）。'),  _t('可在Typecho后台分类管理中查看分类的mid，以英文逗号隔开。不填写则不隐藏任何分类'));
+        $form->addInput($hiddenmid);
+        $hiddenShare = new Typecho_Widget_Helper_Form_Element_Radio('hiddenShare', array ('0' => '禁用', '1' => '启用'), '1', _t('是否开启小程序端分享，转发功能，1为开启，0为关闭。为了过微信审核你懂的^-^，可在过审核后打开该功能'),  _t('审核时建议关闭，防止微信判定小程序有诱导用户分享的嫌疑，审核通过后再开启。'));
+        $form->addInput($hiddenShare);
     }
 
     public static function personalConfig(Typecho_Widget_Helper_Form $form){}

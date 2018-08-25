@@ -18,7 +18,7 @@ var requestHandler = {
     if(showloading != false) {
       wx.showLoading({
         title: '加载中',
-        mask: true
+        mask: false
       })
     }
     wx.request({

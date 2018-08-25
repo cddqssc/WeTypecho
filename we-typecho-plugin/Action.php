@@ -39,6 +39,7 @@ class WeTypecho_Action extends Typecho_Widget implements Widget_Interface_Do {
         $authorId = self::GET('authorId', 0);
         $offset   = $pageSize * ($page - 1);
         $getpage = self::GET('getpage', 0);
+        $idx     = self::GET('idx',-1);
         
         // 根据cid偏移获取文章
         if (isset($_GET['cid'])) {
@@ -68,14 +69,35 @@ class WeTypecho_Action extends Typecho_Widget implements Widget_Interface_Do {
             }
             $select->where('cid IN ?', $cids);
         }
+        if($idx>=0){
+            switch($idx)
+            {
+                case 0:
+                    //浏览量
+                    $select->order('table.contents.views', Typecho_Db::SORT_DESC);
+                    break;
+                case 1:
+                    //评论数
+                    $select->order('table.contents.commentsNum', Typecho_Db::SORT_DESC);
+                    break;
+                case 2:
+                    //点赞数
+                    $select->order('table.contents.likes', Typecho_Db::SORT_DESC);
+                    break;
+                default:
+                    break;
+            }
+        }
         $posts  = $this->db->fetchAll($select);
         $result = array();
+        $temp = Typecho_Widget::widget('Widget_Options')->plugin('WeTypecho')->hiddenShare;
         foreach ($posts as $post) {
             $post        = $this->widget("Widget_Abstract_Contents")->push($post);
             $post['tag'] = $this->db->fetchAll($this->db->select('name')->from('table.metas')->join('table.relationships', 'table.metas.mid = table.relationships.mid', Typecho_DB::LEFT_JOIN)->where('table.relationships.cid = ?', $post['cid'])->where('table.metas.type = ?', 'tag'));
             $post['thumb'] = $this->db->fetchAll($this->db->select('str_value')->from('table.fields')->where('cid = ?', $post['cid']))?$this->db->fetchAll($this->db->select('str_value')->from('table.fields')->where('cid = ?', $post['cid'])):array(array("str_value"=>"https://api.isoyu.com/bing_images.php"));
             $post['views'] = $this->db->fetchAll($this->db->select('views')->from('table.contents')->where('table.contents.cid = ?', $post['cid']));
             $post['likes'] = $this->db->fetchAll($this->db->select('likes')->from('table.contents')->where('table.contents.cid = ?', $post['cid']));
+            $post['showshare'] = $temp;
             $result[]    = $post;
         }
         $this->export($result);
@@ -105,10 +127,26 @@ class WeTypecho_Action extends Typecho_Widget implements Widget_Interface_Do {
     {
         $sec = self::GET('apisec', 'null');
         self::checkApisec($sec);
-        $cat = $this->db->fetchAll($this->db->select('name','slug','type','description','mid')->from('table.metas'));
+        $sec = self::GET('apisec', 'null');
+        self::checkApisec($sec);
+        $temp = Typecho_Widget::widget('Widget_Options')->plugin('WeTypecho')->hiddenmid;                
+        $select = $this->db->select('name','slug','type','description','mid')->from('table.metas')->where('table.metas.type = ?','category');  
+        $hiddenmids = explode(",",$temp);
+        if(sizeof($hiddenmids)>0 && intval($hiddenmids[0])) {        
+        $select->where('mid in ?', $hiddenmids);
+        $hidden = true;    
+        }
+        $cat = $this->db->fetchAll($select);
+        if(!$hidden) {
+        $cat_recent = $cat[0];
+        $cat_recent['name'] = "最近发布";
+        $cat_recent['slug'] = "最近发布";
+        $cat_recent['mid'] = "99999999";
+        array_unshift($cat,$cat_recent);
+        }
         $this->export($cat);
     }
-
+    
     //首页参数 pageSize
     private function recentPost() {
         $sec = self::GET('apisec', 'null');
@@ -406,18 +444,44 @@ class WeTypecho_Action extends Typecho_Widget implements Widget_Interface_Do {
     {
         $sec = self::GET('apisec', 'null');
         self::checkApisec($sec);
-        
+        $pageSize = (int) self::GET('pageSize', 1000);
+        $except = (int) self::GET('except', 'null');
         $mid = self::GET('mid', -1);
         $select = [];
-        if($mid>=0)
-        {
-            $posts = $this->db->fetchAll($this->db->select('cid','mid')->from('table.relationships')->where('mid = ?', $mid));
+        if($mid == 99999999) {
+            $posts = $this->db->fetchAll($this->db->select('cid', 'title', 'created', 'type', 'slug','commentsNum')->from('table.contents')->where('type = ?', 'post')->where('status = ?', 'publish')->where('created < ?', time())->order('table.contents.created', Typecho_Db::SORT_DESC)->offset($offset)->limit(10));
             foreach($posts as $post) {
+                $temp = $this->db->fetchAll($this->db->select('cid', 'title', 'created','commentsNum', 'views', 'likes')->from('table.contents')->where('cid = ?', $post['cid'])->where('status = ?', 'publish'));				
+                if(sizeof($temp)>0) {
+                    $temp['0']['thumb'] = $this->db->fetchAll($this->db->select('str_value')->from('table.fields')->where('cid = ?', $post['cid']));
+                    array_push($select,$temp[0]);
+                }
+            }
+            if(sizeof($posts)>0) {
+                $this->export($select);
+            } else {
+                $this->export(null);
+            }
+        }
+        else if($mid>=0)
+        {
+            $limit = 0;
+            if($except != 'null') {
+                $posts = $this->db->fetchAll($this->db->select('cid','mid')->from('table.relationships')->where('mid = ?', $mid)->where('cid != ?', $except));
+            } else {
+            $posts = $this->db->fetchAll($this->db->select('cid','mid')->from('table.relationships')->where('mid = ?', $mid));
+            }
+            foreach($posts as $post) {   
                 $temp = $this->db->fetchAll($this->db->select('cid', 'title', 'created','commentsNum', 'views', 'likes')->from('table.contents')->where('cid = ?', $post['cid'])->where('status = ?', 'publish'));				
                 if(sizeof($temp)>0) {
                     $temp['0']['thumb'] = $this->db->fetchAll($this->db->select('str_value')->from('table.fields')->where('cid = ?', $post['cid']));
                     array_unshift($select,$temp[0]);
                 }
+                $limit++;
+            }
+            $overflow = sizeof($select) - $pageSize;
+            for($cnt = 0; $cnt < $overflow; $cnt++) {
+                array_pop($select);
             }
             if(sizeof($posts)>0) {
                 $this->export($select);

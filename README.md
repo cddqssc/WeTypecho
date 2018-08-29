@@ -32,6 +32,12 @@ WeTypecho则能帮您快速搭建微信小程序，将Typecho博客的内容映�
 ## 安装 ##
 参见[安装WeTypecho详细步骤][5]
 
+## TODOlist ##
+- [ ] [Bug]安卓会将版权信息放在中间
+- [ ] [Bug]评论栏会被推荐阅读遮挡
+- [ ] [New Feature]插件新增选项是否只显示一级分类
+- [ ] [New Feature]首页幻灯片标题
+- [ ] [New Feature]文章回到首页按钮
 
   [1]: https://2012.pro/index.php/20180818/cid=124.html
   [2]: https://github.com/MingliangLu/WeTypecho

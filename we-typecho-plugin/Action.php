@@ -132,9 +132,10 @@ class WeTypecho_Action extends Typecho_Widget implements Widget_Interface_Do {
         $temp = Typecho_Widget::widget('Widget_Options')->plugin('WeTypecho')->hiddenmid;                
         $select = $this->db->select('name','slug','type','description','mid')->from('table.metas')->where('table.metas.type = ?','category');  
         $hiddenmids = explode(",",$temp);
+        $hidden = false;
         if(sizeof($hiddenmids)>0 && intval($hiddenmids[0])) {        
         $select->where('mid in ?', $hiddenmids);
-        $hidden = true;    
+        $hidden = true;
         }
         $cat = $this->db->fetchAll($select);
         if(!$hidden) {
@@ -449,7 +450,7 @@ class WeTypecho_Action extends Typecho_Widget implements Widget_Interface_Do {
         $mid = self::GET('mid', -1);
         $select = [];
         if($mid == 99999999) {
-            $posts = $this->db->fetchAll($this->db->select('cid', 'title', 'created', 'type', 'slug','commentsNum')->from('table.contents')->where('type = ?', 'post')->where('status = ?', 'publish')->where('created < ?', time())->order('table.contents.created', Typecho_Db::SORT_DESC)->offset($offset)->limit(10));
+            $posts = $this->db->fetchAll($this->db->select('cid', 'title', 'created', 'type', 'slug','commentsNum')->from('table.contents')->where('type = ?', 'post')->where('status = ?', 'publish')->where('created < ?', time())->order('table.contents.created', Typecho_Db::SORT_DESC)->limit(10));
             foreach($posts as $post) {
                 $temp = $this->db->fetchAll($this->db->select('cid', 'title', 'created','commentsNum', 'views', 'likes')->from('table.contents')->where('cid = ?', $post['cid'])->where('status = ?', 'publish'));				
                 if(sizeof($temp)>0) {

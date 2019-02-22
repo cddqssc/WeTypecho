@@ -1,9 +1,9 @@
 @import '/towxml/style/main.wxss';
 /**主题配色（浅色样式）**/
-@import '/towxml/style/theme/light.wxss';
+@import '/towxml/style/theme/dark.wxss';
 
 /**主题配色（深色样式）**/
 @import '/towxml/style/theme/dark.wxss';
-page { 
-    background-color: rgba(250,250,250,1);  
+page {
+    background-color: rgba(250,250,250,1);
 }

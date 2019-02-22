@@ -19,13 +19,13 @@
         <image class="list_img_view" src="../../resources/like.png"></image>
         <text class="list_text_view">{{item.likes}}</text>
     </view>
-<view class="footerviewwebsite" style="justify-content: left; font-size: 24rpx;">  
+<view class="footerviewwebsite" style="justify-content: left; font-size: 24rpx;">
     <text>{{aboutstr}}</text>
-</view>    
+</view>
 </view>
 <template is="entry" data="{{...content}}" bindtap="clicklink" />
 <view class="minheight view_section" >
-    <text class="m-block text_section_title" >{{item.likes}}人赞 </text>    
+    <text class="m-block text_section_title" >{{item.likes}}人赞 </text>
     <scroll-view lower-threshold="50" scroll-x="True" style="width: 100%; overflow-x: auto; overflow-y: hidden; " upper-threshold="50">
         <view class="post_view" >
             <block wx:key="id" wx:for="{{likelist}}">
@@ -62,7 +62,7 @@
         </view>
     </block>
 <view class="comment-fixed">
-    <view class="comment-respond">                         
+    <view class="comment-respond">
         <view class="comment-box">
             <input class="comment-input" type='text' bindinput="cminput" value="{{cmtext}}" placeholder="{{cmplaceholder}}" bindblur="cmloss" focus="{{focus}}" bindfocus="cmfocus" />
             <button class="comment-button touch-active" formType="submit" bindtap = "sendcm">发送</button>
@@ -71,8 +71,8 @@
                 <text class="cmicontext">{{item.likes}}赞</text>
             </view>
             <view class="cmview" style="display:{{item.showshare == 1 ? 'flex' : 'none'}};">
-                <button class="sharebtn touch-active" id="shareBtn" open-type="share" plain='true' type="primary" hover-class="other-button-hover" style="background-image:url({{resendUrl}}); background-size: 100% 100%;">
-                </button>
+              <!-- <button class="sharebtn touch-active" id="shareBtn" open-type="share" plain='true' type="primary" hover-class="other-button-hover"><image src="{{resendUrl}}" class="img-plus" mode="center"></image></button> -->
+                <button class="sharebtn touch-active" id="shareBtn" open-type="share" plain='true' type="primary" hover-class="other-button-hover" style="background-image:url({{resendUrl}}); background-size: 100% 100%;"></button>
                 <text class="cmicontext">转发</text>
             </view>
             <view class="cmview" bindtap="share" style="display:{{item.showshare == 1 ? 'flex' : 'none'}};">

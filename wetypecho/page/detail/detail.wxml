@@ -31,7 +31,7 @@
 </view>
 <template is="entry" data="{{...content}}" bindtap="clicklink" />
 <view class="minheight view_section" >
-    <text class="m-block text_section_title" >{{item.likes}}人赞 </text>    
+    <text class="m-block text_section_title" >{{item.likes}}人赞 </text>
     <scroll-view class="m_border" lower-threshold="50" scroll-x="True" style="width: 100%; overflow-x: auto; overflow-y: hidden; " upper-threshold="50">
         <view class="post_view" >
             <block wx:key="id" wx:for="{{likelist}}">
@@ -75,9 +75,9 @@
         <navigator class="nav_postlist_item"  hover-class="navigator-hover" url="../detail/detail?item={{item.cid}}">
             <view class="view_postlist_item" >
                 <view class="view_catpost" >
-                    <image class="image_cat_thumb"  mode="aspectFit" src="{{item.thumb[0].str_value}}"/>
+                    <!-- <image class="image_cat_thumb"  mode="aspectFit" src="{{item.thumb[0].str_value}}"/> -->
                     <text class="image_cat_item_title" >{{item.title}}</text>
-                    <view style="margin-left: 105px; margin-top: 10rpx;" >
+                    <view style="margin-top: 10rpx;" >
                         <image class="listpg_first_img" src="../../resources/time.png"></image>
                         <text class="list_text_view" >{{item.posttime}}</text>
                         <image class="list_img_view" src="../../resources/comments.png"></image>
@@ -95,7 +95,7 @@
     </scroll-view>
     </view>
 <view class="comment-fixed">
-    <view class="comment-respond">                         
+    <view class="comment-respond">
         <view class="comment-box">
             <input class="comment-input" type='text' bindinput="cminput" value="{{cmtext}}" placeholder="{{cmplaceholder}}" bindblur="cmloss" focus="{{focus}}" bindfocus="cmfocus" />
             <button class="comment-button touch-active" formType="submit" bindtap = "sendcm">发送</button>

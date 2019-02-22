@@ -24,9 +24,9 @@
                 <view class="view_catpost" >
                     <image class="image_cat_box" style="display:{{item.rank<=3 ? 'block' : 'none'}}"  mode="center" src="{{item.rank==1 ? '../../resources/first.png' : (item.rank==2 ? '../../resources/second.png' : (item.rank==3 ? '../../resources/third.png' : '../../resources/third.png')) }}"/>
                     <view class="rank_cat_box" style="display:{{item.rank>3 ? 'block' : 'none'}}">{{item.rank}}</view>
-                    <image class="image_cat_thumb" style="margin-left: 24rpx;"  mode="aspectFit" src="{{item.thumb}}"/>
-                    <text class="image_cat_item_title" style="margin-left: 290rpx;" >{{item.title}}</text>
-                    <view style="margin-left: 290rpx; margin-top: 10rpx;" >
+                    <!-- <image class="image_cat_thumb" style="margin-left: 24rpx;"  mode="aspectFit" src="{{item.thumb}}"/> -->
+                    <text class="image_cat_item_title" style="margin-left: 100rpx;" >{{item.title}}</text>
+                    <view style="margin-left: 100rpx; margin-top: 10rpx;" >
                         <image class="listpg_first_img" src="../../resources/time.png"></image>
                         <text class="list_text_view" >{{item.posttime}}</text>
                         <image class="list_img_view" src="../../resources/comments.png"></image>

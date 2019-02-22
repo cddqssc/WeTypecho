@@ -1,6 +1,6 @@
-var domain = "2012.pro"
-var name = "成都第七帅"
-var API_SECRET = "xxx"
+var domain = "idealclover.top"
+var name = "idealclover"
+var API_SECRET = "idealclover"
 
 export default {
     getdomain: domain,

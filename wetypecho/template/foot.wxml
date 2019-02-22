@@ -1,8 +1,11 @@
 <template name="foot">
-    <view class="footerview">  
-    <text >@2018 成都第七帅</text>
+    <view class="footerview">
+    <text >@2019 idealclover</text>
     </view>
-    <view class="footerviewwebsite">  
-    <text style>2012.pro</text>
+    <view class="footerviewwebsite">
+    <text >based on WeTypecho</text>
+    </view>
+    <view class="footerviewwebsite">
+    <text >made with ❤ by idealclover</text>
     </view>
 </template>

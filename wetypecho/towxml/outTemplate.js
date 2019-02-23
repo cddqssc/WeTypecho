@@ -1,3 +1,5 @@
+
+const tagsAndAttrs = require('./lib/tagsAndAttrs');
 class outwxml{
     constructor(option){
         const _ts = this;
@@ -9,16 +11,13 @@ class outwxml{
           _ts.config[i] = option[i];
         };
 
-        let Towxml = require('./main');
         _ts.m = {
             fs:require('fs'),
-            path:require('path'),
-            towxml:new Towxml()
+            path:require('path')
         };
     }
     init(){
         const _ts = this;
-
         _ts.outtag();
 
         let s = _ts.outwxml();
@@ -29,13 +28,13 @@ class outwxml{
     outtag(id){
         const _ts = this;
         let s = '',
-            attr = _ts.outattr(),
-            wxmlTag = _ts.m.towxml.wxmlTag;
+            wxmlTag = tagsAndAttrs.wxml;
         
         wxmlTag.forEach((item,index)=>{
-	        let imgMode = ''
+            let imgMode = '',
+                attr = _ts.outattr(item);
 	        if(item === 'image'){
-		        imgMode = 'mode="widthFix"';
+		        imgMode = `mode="{{item.type === 'audio' ? '' : 'widthFix'}}"`;
             };
 
             // todo添加绑定事件
@@ -45,44 +44,51 @@ class outwxml{
             if(item === 'checkbox'){
                 attr += `value="{{item.attr['value']}}"`;
             };
-            
+
             s+= `<${item} wx:if="{{item.node === 'element' && item.tag === '${item}'}}" ${attr} ${imgMode}><block wx:for="{{item.child}}" wx:key="{{item}}"><template is="m${id}" data="{{item}}"/></block></${item}>`;
-            // s+= `
-            //         <${item} wx:if="{{item.node === 'element' && item.tag === '${item}'}}" ${attr} ${imgMode}>
-            //             <block wx:for="{{item.child}}" wx:key="{{item}}">
-            //                 <template is="m${id}" data="{{item}}"/>
-            //             </block>
-            //         </${item}>
-            // `;
         });
 
         return s;
     }
 
     //生成模版对应属性
-    outattr(){
+    outattr(tagName){
+        tagName = tagName || '';
         const _ts = this;
         
         let s = '',
-            attr = [
-                'class','width','height','data','src','id','style','href','checked',
-                'bind:touchstart',
-                'bind:touchmove',
-                'bind:touchcancel',
-                'bind:touchend',
-                'bind:tap',
-                'bind:longpress',
-                'bind:longtap',
-                'bind:transitionend',
-                'bind:animationstart',
-                'bind:animationiteration',
-                'bind:animationend',
-                'bind:touchforcechange'
-            ];
+            attr = [];
+        attr.push(...tagsAndAttrs.attrs);
+
+        switch (tagName) {
+            case 'navigator':
+                attr.push('href');
+            break;
+            case 'checkbox':
+            case 'radio':
+            case 'switch':
+                attr.push('checked');
+            break;
+            case 'audio':
+                attr.push('poster');
+                attr.push('src');
+                attr.push('name');
+                attr.push('author');
+                attr.push('loop');
+                // attr.push('controls');
+                s += 'controls="true" ';
+            break;
+            case 'video':
+                attr.push('poster');
+                attr.push('src');
+            break;
+            case 'image':
+                attr.push('src');
+            break;
+        };
 
         s += `data-_el="{{item}}"`;
         attr.forEach((item,index)=>{
-            
             switch (item) {
                 case 'class':
                     s += `${item}="{{item.attr.class}}"`;
@@ -93,7 +99,7 @@ class outwxml{
                 default:
                     let aItem = item.split(':');
                     if(aItem.length > 1){
-                        s += `${item}='eventRun_${aItem[0]}_${aItem[1]}'`;
+                        s += `${item}='__${aItem[0]}_${aItem[1]}'`;
                     }else{
                         s += `${item}="{{item.attr['${item}']}}"`;
                     };
@@ -165,9 +171,7 @@ class outwxml{
 
             s+=temp;
         };
-
         return s;
     }
 };
-
 new outwxml({depth:10}).init();

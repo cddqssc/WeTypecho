@@ -1,4 +1,4 @@
-var domain = "idealclover.top"
+var domain = "idealclover.cn"
 var name = "idealclover"
 var API_SECRET = "idealclover"
 

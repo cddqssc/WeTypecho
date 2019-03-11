@@ -21,7 +21,7 @@ Page({
   data: {
   postslist:[],
   swipelist:[],
-  topswiper: 'none',  
+  topswiper: 'none',
   midposts: 'none',
   allcatslist:[],
   allcatpostlist: [],
@@ -35,6 +35,18 @@ Page({
       url: API.GetSwiperPost(),
       success: function(res) {
         var datas = res.data.data;
+        datas.forEach(function(data) {
+            // console.log(data);
+            let result = '';
+            data['thumb'].forEach(function(thumb){
+                if(thumb.name === "thumb"){
+                    // console.log(thumb);
+                    result = thumb;
+                }
+            });
+            data['thumb'] = [result];
+            // console.log(data);
+        });
         if(API.IsNull(datas)) {
           that.setData({
             topswiper: 'block',
@@ -85,7 +97,7 @@ Page({
           });
           that.setData({
             allcatpostlist: that.data.allcatpostlist,
-            postheight: that.data.allcatpostlist[idx].length * 170 + 'rpx'            
+            postheight: that.data.allcatpostlist[idx].length * 145 + 'rpx'
           })
         } else {
           wx.showToast({
@@ -106,7 +118,7 @@ Page({
   change_finish(e) {
     var that = this;
     if(e.detail.current != this.data.current_cat) {
-      this.changeCatex(this.data.allcatslist[e.detail.current].mid);      
+      this.changeCatex(this.data.allcatslist[e.detail.current].mid);
       this.setData({
         current_cat: e.detail.current,
         current_position: that.data.allcatslist[e.detail.current].id_tag
@@ -129,7 +141,7 @@ Page({
       catpostlist: []
       })
     this.data.allcatslist = this.data.allcatslist.map(function (item){
-      if(item.mid == mid) 
+      if(item.mid == mid)
         item.active = true;
       else
         item.active = false;
@@ -153,9 +165,9 @@ Page({
             //Login
             Net.request({
               url: API.Login(app.Data.userInfo),
-              success: function(res) {                
+              success: function(res) {
                 var datas = res.data.data;
-                app.Data.userInfo.openid = datas;              
+                app.Data.userInfo.openid = datas;
               },
               fail: function() {
               }
@@ -165,7 +177,7 @@ Page({
       }
     });
     this.fetchposts();
-    this.fetchallcats();    
+    this.fetchallcats();
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -196,7 +208,7 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh () {    
+  onPullDownRefresh () {
     wx.stopPullDownRefresh();
     this.setData({
       swipelist: [],
@@ -206,11 +218,10 @@ Page({
       current_cat: 0,
       current_position: 'mid_99999999'
     })
-    this.onLoad(); 
+    this.onLoad();
   },
 
 
   //以下为自定义点击事件
-  
-})
 
+})

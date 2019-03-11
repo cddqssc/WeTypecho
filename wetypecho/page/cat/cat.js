@@ -43,7 +43,7 @@ Page({
   },
   change_finish(e) {
     var that = this;
-    if(e.detail.current != this.data.active_idx) {      
+    if(e.detail.current != this.data.active_idx) {
       this.data.ranklist[this.data.active_idx].active = false;
       this.data.ranklist[e.detail.current].active = true;
       this.setData({
@@ -101,7 +101,7 @@ Page({
       url: API.GetRankedPosts(idx),
       success: function(res) {
         var datas = res.data.data;
-        var rank = 1;        
+        var rank = 1;
         that.data.allrankpostlist[idx] = datas.map(function (ori_item){
           var item = API.ParseItem(ori_item);
           item.posttime = API.getcreatedtime(item.created);
@@ -110,7 +110,7 @@ Page({
         });
         that.setData({
           allrankpostlist: that.data.allrankpostlist,
-          postheight: that.data.allrankpostlist[idx].length * 170 + 'rpx',
+          postheight: that.data.allrankpostlist[idx].length * 145 + 'rpx',
         })
       }
     })
@@ -153,6 +153,5 @@ Page({
 
 
   //以下为自定义点击事件
-  
-})
 
+})

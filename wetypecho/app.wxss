@@ -485,7 +485,7 @@ radio-group {
 }
 .classify .classify_detail {
         position: relative;
-        z-index: 999;
+        /* z-index: 999; */
         background: #fff;
         padding: 3rpx;
 }
@@ -677,8 +677,8 @@ radio-group {
         color: rgb(173, 25, 25);
 }
 .sharebtn {
-        width: 48rpx !important;
-        height: 48rpx !important;
+        width: 66.8rpx !important;
+        height: 66.8rpx !important;
         border: none !important;
 }
 .table {

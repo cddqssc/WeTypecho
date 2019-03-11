@@ -104,7 +104,7 @@
                 <text class="cmicontext">{{item.likes}}赞</text>
             </view>
             <view class="cmview" style="display:{{item.showshare == 1 ? 'flex' : 'none'}};">
-                <button class="sharebtn touch-active" id="shareBtn" open-type="share" plain='true' type="primary" hover-class="other-button-hover" style="background-image:url({{resendUrl}}); background-size: 100% 100%;">
+                <button class="sharebtn touch-active" id="shareBtn" open-type="share" plain='true' type="primary" hover-class="other-button-hover" style="background-image:url('../../resources/resend.png'); background-size: 100% 100%;">
                 </button>
                 <text class="cmicontext">转发</text>
             </view>

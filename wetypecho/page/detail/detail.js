@@ -43,7 +43,7 @@ Page({
     qrcode_temp: '',
     painting: {},
     cmbtnclick: false,
-    resendUrl: API.GetDomain() + 'usr/plugins/WeTypecho/res/resend.png',
+    // resendUrl: API.GetDomain() + 'usr/plugins/WeTypecho/res/resend.png',
     related_post:[],
     display_related: 'none',
   },
@@ -52,14 +52,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad (options) {
-    this.data.cid = options.item;    
+    this.data.cid = options.item;
   },
   eventRun_bind_tap (event) {
     var href = event.target.dataset._el.attr.href;
     if(API.IsNull(href)) {
       var cidaddr = href.search('cid=');
       if( -1 != href.search(API.GetDomain()) && -1 != cidaddr ) {
-        
+
           var end = href.search('.html');
           var cid = href.substring(cidaddr+4,end);
           wx.navigateTo({
@@ -91,7 +91,7 @@ Page({
         let data_parse = app.towxml.toJson(data,'markdown');
         that.setData({
           content: data_parse,
-          item: parsed_item,          
+          item: parsed_item,
         })
         //发布时间
         that.data.createdtime = API.getcreatedtime(parsed_item.created);
@@ -105,7 +105,7 @@ Page({
     //获取文章评论
     this.getcomments(cid);
     //获取点赞列表
-    this.getlikelist(cid);                
+    this.getlikelist(cid);
   },
   fetchpostbymid(mid) {
     var that = this;
@@ -122,7 +122,7 @@ Page({
           that.setData({
             display_related: 'block',
             related_post: that.data.related_post,
-            postheight: that.data.related_post.length * 180 + 'rpx'            
+            postheight: that.data.related_post.length * 180 + 'rpx'
           })
         }
         }
@@ -141,7 +141,7 @@ Page({
             var cnt = that.data.item.likes - datas.length;
             for(var i=0; i< cnt; i++)
               {
-                var user = new likemember('网页用户','../../resources/chrome.png')
+                var user = new likemember('网页用户','../../resources/zhihu.jpg')
                 datas.push(user);
               }
           }
@@ -155,7 +155,7 @@ Page({
             var m_datas = [];
             for(var i=0; i< that.data.item.likes; i++)
               {
-                var user = new likemember('网页用户','../../resources/chrome.png')
+                var user = new likemember('网页用户','../../resources/zhihu.jpg')
                 m_datas.push(user);
               }
               that.setData({
@@ -163,7 +163,7 @@ Page({
                   return item;
                 })
               })
-          } else {          
+          } else {
             that.setData({
               likelist: []
             })
@@ -394,4 +394,3 @@ Page({
     })
   }
 })
-

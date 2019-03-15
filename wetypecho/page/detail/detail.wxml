@@ -31,7 +31,7 @@
 </view>
 <template is="entry" data="{{...content}}" bindtap="clicklink" />
 <view class="minheight view_section" >
-    <text class="m-block text_section_title" >{{item.likes}}人赞 </text>    
+    <text class="m-block text_section_title" >{{item.likes}}人赞 </text>
     <scroll-view class="m_border" lower-threshold="50" scroll-x="True" style="width: 100%; overflow-x: auto; overflow-y: hidden; " upper-threshold="50">
         <view class="post_view" >
             <block wx:key="id" wx:for="{{likelist}}">
@@ -95,7 +95,7 @@
     </scroll-view>
     </view>
 <view class="comment-fixed">
-    <view class="comment-respond">                         
+    <view class="comment-respond">
         <view class="comment-box">
             <input class="comment-input" type='text' bindinput="cminput" value="{{cmtext}}" placeholder="{{cmplaceholder}}" bindblur="cmloss" focus="{{focus}}" bindfocus="cmfocus" />
             <button class="comment-button touch-active" formType="submit" bindtap = "sendcm">发送</button>
@@ -103,11 +103,10 @@
                 <image src="{{zanimg}}" class="img-plus" mode="scaleToFill"></image>
                 <text class="cmicontext">{{item.likes}}赞</text>
             </view>
-            <view class="cmview" style="display:{{item.showshare == 1 ? 'flex' : 'none'}};">
-                <button class="sharebtn touch-active" id="shareBtn" open-type="share" plain='true' type="primary" hover-class="other-button-hover" style="background-image:url({{resendUrl}}); background-size: 100% 100%;">
-                </button>
-                <text class="cmicontext">转发</text>
-            </view>
+            <button class="cmview" open-type="share" plain='true' type="primary"  style="border:none; margin-top:5rpx; margin-left:15rpx; padding:0px; width:auto; display:{{item.showshare == 1 ? 'flex' : 'none'}};">
+                <image src='../../resources/resend.png' class="img-plus" mode="scaleToFill"></image>
+                <text class="cmicontext" style='margin-top:-12rpx;'>转发</text>
+            </button>
             <view class="cmview" bindtap="share" style="display:{{item.showshare == 1 ? 'flex' : 'none'}};">
                 <image src="../../resources/share.png" class="img-plus" mode="scaleToFill"></image>
                 <text class="cmicontext">分享</text>

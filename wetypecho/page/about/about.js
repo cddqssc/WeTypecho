@@ -43,7 +43,6 @@ Page({
     qrcode_temp: '',
     painting: {},
     cmbtnclick: false,
-    resendUrl: API.GetDomain() + 'usr/plugins/WeTypecho/res/resend.png',
     aboutstr: '\u7434\u5fc3\u5251\u9b44\u4eca\u4f55\u5728\uff0c\u6c38\u591c\u521d'
   },
 
@@ -76,7 +75,7 @@ Page({
     if(API.IsNull(href)) {
       var cidaddr = href.search('cid=');
       if( -1 != href.search(API.GetDomain()) && -1 != cidaddr ) {
-        
+
           var end = href.search('.html');
           var cid = href.substring(cidaddr+4,end);
           wx.navigateTo({
@@ -156,7 +155,7 @@ Page({
                   return item;
                 })
               })
-          } else {          
+          } else {
             that.setData({
               likelist: []
             })
@@ -386,4 +385,3 @@ Page({
     })
   }
 })
-

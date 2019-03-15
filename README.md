@@ -33,9 +33,13 @@ WeTypecho则能帮您快速搭建微信小程序，将Typecho博客的内容映�
 ## 安装
 参见[安装WeTypecho详细步骤][5]
 
+## 其他小程序样式
+
+[idealclover/idealclover-WeTypecho](https://github.com/idealclover/idealclover-WeTypecho)
+
 ## TODOlist
-- [ ] [Bug]安卓会将版权信息放在中间
-- [ ] [Bug]评论栏会被推荐阅读遮挡
+- [x] [Bug]安卓会将版权信息放在中间
+- [x] [Bug]评论栏会被推荐阅读遮挡
 - [ ] [New Feature]插件新增选项是否只显示一级分类
 - [ ] [New Feature]首页幻灯片标题
 - [ ] [New Feature]文章回到首页按钮
@@ -45,3 +49,4 @@ WeTypecho则能帮您快速搭建微信小程序，将Typecho博客的内容映�
   [3]: http://res.2012.pro/2018/08/11/1533954773.jpg
   [4]: https://2012.pro/index.php/20180806/cid=37.html#article-header-6
   [5]: https://2012.pro/index.php/20180811/cid=77.html
+  [6]: https://github.com/idealclover/idealclover-WeTypecho

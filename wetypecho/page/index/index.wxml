@@ -27,7 +27,7 @@
         <view class="children">
         <block wx:key="id" wx:for="{{item_cat}}">
         <navigator class="nav_postlist_item"  hover-class="navigator-hover" url="../detail/detail?item={{item.cid}}">
-            <view class="view_postlist_item" >
+            <view class="view_postlist_item"  style="height: 170rpx">
                 <view class="view_catpost" >
                     <image class="image_cat_thumb"  mode="aspectFit" src="{{item.thumb[0].str_value}}"/>
                     <text class="image_cat_item_title" >{{item.title}}</text>

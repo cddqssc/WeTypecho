@@ -2,7 +2,7 @@
 <view class="top_search">
     <view class="search_read_only">
         <image class="search_icon" src='../../resources/search.png'></image>
-        <input class="search_content" bindtap="showsearch" bindinput="searchinput" bindblur="searchBtn" bindconfirm="searchBtn" placeholder="搜索关键字..."></input>
+        <input class="search_content" bindtap="showsearch" bindinput="searchinput" bindconfirm="searchBtn" placeholder="搜索关键字..."></input>
     </view>
 </view>
 <view class="scroll_box" style="margin-left:0rpx;">

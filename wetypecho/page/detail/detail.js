@@ -53,7 +53,7 @@ Page({
   onLoad (options) {
     this.data.cid = options.item;
   },
-  eventRun_bind_tap (event) {
+  __bind_tap (event) {
     var href = event.target.dataset._el.attr.href;
     if(API.IsNull(href)) {
       var cidaddr = href.search('cid=');

@@ -1,11 +1,11 @@
 <import src="../../template/foot.wxml" />
 <view class="top_search">
     <view class="search_read_only">
-        <image class="search_icon" src='../../resources/search.png' mode="center"></image>
-        <input class="search_content" bindtap="showsearch" bindinput="searchinput" bindblur="searchBtn" bindconfirm="searchBtn" placeholder="搜索关键字..."></input>
+        <image class="search_icon" src='../../resources/search.png'></image>
+        <input class="search_content" bindtap="showsearch" bindinput="searchinput" bindconfirm="searchBtn" placeholder="搜索关键字..."></input>
     </view>
 </view>
-<view class="scroll_box" style="margin-left:0rpx;"> 
+<view class="scroll_box" style="margin-left:0rpx;">
     <scroll-view class="scroll-view_x" scroll-x style="width: auto;overflow:hidden;">
         <view class="item_rank_list {{item.active? 'active':''}}" wx:for="{{ranklist}}" wx:key="item" bindtap="changeCat" data-idx="{{item.idx}}">
         {{item.name}}
@@ -20,7 +20,7 @@
         <view class="children">
         <block wx:key="id" wx:for="{{item_cat}}">
         <navigator class="nav_postlist_item"  hover-class="navigator-hover" url="../detail/detail?item={{item.cid}}">
-            <view class="view_postlist_item" >
+            <view class="view_postlist_item"  style="height: 170rpx">
                 <view class="view_catpost" >
                     <image class="image_cat_box" style="display:{{item.rank<=3 ? 'block' : 'none'}}"  mode="center" src="{{item.rank==1 ? '../../resources/first.png' : (item.rank==2 ? '../../resources/second.png' : (item.rank==3 ? '../../resources/third.png' : '../../resources/third.png')) }}"/>
                     <view class="rank_cat_box" style="display:{{item.rank>3 ? 'block' : 'none'}}">{{item.rank}}</view>

@@ -197,7 +197,7 @@ radio-group {
 }
 
 .index_swiper_post {
-        
+
 }
 
 .detaillikeswp {
@@ -223,7 +223,7 @@ radio-group {
 }
 
 .navigator_item {
-        height: calc(100% - 30rpx); 
+        height: calc(100% - 30rpx);
         position: relative;
         display: flex;
         flex-direction: column;
@@ -246,7 +246,7 @@ radio-group {
 
 .index_title {
         font-size: 16px;
-        font-weight: 600;        
+        font-weight: 600;
 }
 
 .navigator_search {
@@ -294,7 +294,7 @@ radio-group {
         border-left-style: none;
 }
 
-.stat_list_item {        
+.stat_list_item {
         padding: 8px;
         border-style: solid;
         border-bottom-width: 1px;
@@ -364,7 +364,7 @@ radio-group {
         border-bottom-width: 0px;
         border-bottom-color: rgba(170, 170, 170, 1);
 }
-.nav_cat_item {                
+.nav_cat_item {
         height: auto;
         border-radius: 30rpx;
         font-size: 26rpx;
@@ -485,9 +485,10 @@ radio-group {
 }
 .classify .classify_detail {
         position: relative;
-        z-index: 999;
+        /* z-index: 999; */
         background: #fff;
         padding: 3rpx;
+        padding-bottom: 50rpx;
 }
 .classify .classify_detail .title {
         font-size: 30rpx;
@@ -526,7 +527,7 @@ radio-group {
         font-family: Microsoft YaHei;
         color: #999999;
 }
-      
+
 .footerviewwebsite {
         width: 100%;
         display: flex;
@@ -637,12 +638,12 @@ radio-group {
 }
 .img-plus {
         width: 48rpx !important;
-        height: 48rpx !important;     
+        height: 48rpx !important;
 }
 .cmview {
         margin-left: 20rpx;
         margin-right: 5rpx;
-        display: flex;  
+        display: flex;
         flex-direction: column;
         font-size: 24rpx;
         align-items: center;
@@ -687,13 +688,13 @@ radio-group {
         border-bottom: 0;
         width: 100%;
 }
-        
+
 .tr {
         width: 100%;
         display: flex;
         justify-content: space-between;
 }
-        
+
 .th, .td {
         padding: 10px;
         border-bottom: 1px solid #dadada;
@@ -701,7 +702,7 @@ radio-group {
         text-align: center;
         width: 100%;
 }
-        
+
 .th {
         font-weight: 400;
         background-color: #dadada;

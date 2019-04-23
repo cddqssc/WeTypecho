@@ -44,9 +44,7 @@
     "backgroundColor": "#EFEFEF"
   }, 
   "networkTimeout": {
-    "connectSocket": "", 
     "request": 5000, 
-    "downloadFile": 60000, 
-    "uploadFile": ""
+    "downloadFile": 60000
   }
 }

@@ -93,7 +93,7 @@ Page({
           that.setData({
             allpostslist: datas.map(function (item){
               item.posttime = API.getcreatedtime(item.created);
-              item.thumb = item.thumb[0].str_value;
+              // item.thumb = item.thumb[0].str_value;
               return item;
             })
           })

@@ -478,7 +478,7 @@ class WeTypecho_Action extends Typecho_Widget implements Widget_Interface_Do {
             foreach($posts as $post) {
                 $temp = $this->db->fetchAll($this->db->select('cid', 'title', 'created','commentsNum', 'views', 'likes')->from('table.contents')->where('cid = ?', $post['cid'])->where('status = ?', 'publish'));
                 if(sizeof($temp)>0) {
-                    $temp['0']['thumb'] = $this->db->fetchAll($this->db->select('str_value')->from('table.fields')->where('cid = ?', $post['cid']));
+                    $temp['0']['thumb'] = $this->db->fetchAll($this->db->select('str_value')->from('table.fields')->where('cid = ?', $post['cid']))?$this->db->fetchAll($this->db->select('str_value')->from('table.fields')->where('cid = ?', $cid)):array(array("str_value"=>"https://api.isoyu.com/bing_images.php"));
                     array_unshift($select,$temp[0]);
                 }
                 $limit++;

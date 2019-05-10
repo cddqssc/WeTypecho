@@ -467,9 +467,8 @@ class WeTypecho_Action extends Typecho_Widget implements Widget_Interface_Do {
         else if($mid>=0)
         {
             $categoryListWidget = $this->widget('Widget_Metas_Category_List', 'current='.$mid);
-            $category = $categoryListWidget->filter($category);
-            $children = $categoryListWidget->getAllChildren($category['mid']);
-            $children[] = $category['mid'];
+            $children = $categoryListWidget->getAllChildren($mid);
+            $children[] = $mid;
             $limit = 0;
             if($except != 'null') {
                 $posts = $this->db->fetchAll($this->db->select('cid','mid')->from('table.relationships')->where('mid IN ?', $children)->where('cid != ?', $except));
